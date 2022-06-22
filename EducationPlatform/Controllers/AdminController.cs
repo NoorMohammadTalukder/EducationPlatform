@@ -38,5 +38,18 @@ namespace EducationPlatform.Controllers
                 return View();
             }
         }
+
+        public ActionResult List()
+        {
+            var db = new EducationPlatformEntities();
+            var InstitutionList = db.Admins.ToList();
+            return View(InstitutionList);
+            
+        }
+
+        public ActionResult Generatpdf()
+        {
+            return new Rotativa.ActionAsPdf("List");
+        }
     }
 }
