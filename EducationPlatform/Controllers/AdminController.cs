@@ -14,6 +14,27 @@ namespace EducationPlatform.Controllers
         // GET: Admin
         public ActionResult Index()
         {
+            var db = new EducationPlatformEntities();
+
+            ViewBag.totalStudents=(from i in db.Students
+                         where i.Id>0 select i).Count();
+
+            ViewBag.totalCourses = (from i in db.Courses
+                               where i.Id > 0
+                               select i).Count();
+            ViewBag.totalMentors = (from i in db.Mentors
+                                    where i.Id > 0
+                                    select i).Count();
+
+            ViewBag.totalInstitutes = (from i in db.Institutions
+                                    where i.Id > 0
+                                    select i).Count();
+
+            ViewBag.totalPassedStudents = (from i in db.Certificates
+                                       where i.Status=="Approved"
+                                       select i).Count();
+
+
             return View();
         }
         [AllowAnonymous]
