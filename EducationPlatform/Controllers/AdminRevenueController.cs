@@ -98,24 +98,26 @@ namespace EducationPlatform.Controllers
             //Add a page.
             PdfPage page = doc.Pages.Add();
             //Create a PdfGrid.
+
             PdfGrid pdfGrid = new PdfGrid();
             //Create a DataTable.
+
             System.Data.DataTable dataTable = new DataTable();
             //Add columns to the DataTable
-            dataTable.Columns.Add("particular:");
-             dataTable.Columns.Add("Details");
+            dataTable.Columns.Add("ABC Education");
+            //dataTable.Columns.Add();
             // dataTable.Columns.Add("Name");
             //Add rows to the DataTable.
-            dataTable.Rows.Add(new object[] { "Print Time", dateime });
-            dataTable.Rows.Add(new object[] { "Varsity Id", id });
-            dataTable.Rows.Add(new object[] { "Varsity Name", varsityName });
-            dataTable.Rows.Add(new object[] { "Total Selling Amount", sellingAmount +" BDT" });
-            dataTable.Rows.Add(new object[] { "ABC Education Earning", myEarning+ " BDT" });
-            dataTable.Rows.Add(new object[] { varsityName+" Earning", varsityEarning +" BDT" });
+            dataTable.Rows.Add(new object[] { "Print Time: "+ dateime});
+            dataTable.Rows.Add(new object[] { "Varsity Id:"+id });
+            dataTable.Rows.Add(new object[] { "Varsity Name:"+ varsityName });
+            dataTable.Rows.Add(new object[] { "Total Selling Amount: "+ sellingAmount +" BDT" });
+            dataTable.Rows.Add(new object[] { "ABC Education Earning:"+ myEarning+ " BDT"  });
+            dataTable.Rows.Add(new object[] { varsityName+" Earning:"+ varsityEarning + " BDT"  });
             //Assign data source.
             pdfGrid.DataSource = dataTable;
             //Draw grid to the page of PDF document.
-            pdfGrid.Draw(page, new PointF(10, 10));
+            pdfGrid.Draw(page, new PointF(50, 50));
             // Open the document in browser after saving it
            
             doc.Save(varsityName+ dateime+".pdf", HttpContext.ApplicationInstance.Response, HttpReadType.Save);
