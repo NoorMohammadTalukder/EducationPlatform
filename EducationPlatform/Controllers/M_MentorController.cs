@@ -16,7 +16,7 @@ namespace EducationPlatform.Controllers
 {
     public class M_MentorController : Controller
     {
-        // GET: M_Mentor
+        
         [MentorLoginAuth]
         public ActionResult Index()
         {
