@@ -21,24 +21,32 @@
                     <br />
                     <a href="~/A_Institution/InstitutionViewOfferedCourse" class="btn btn-primary">View Offered Courses</a>
                     <br />
-                    <h4>Institution Id</h4>  <input type="text" value="@(Model != null ? Model.InsttutionId:"")" name="InstitutionId" 
-                                                    class=" form-control" placeholder="Institution Id"/>
-                    <h4>Name</h4>  <input type="text" value="@(Model!= null ? Model.Name:"")" name="Name" 
-                                          class="form-control" placeholder="Name"  />
+                    <h4>Institution Id</h4>  <input type="text" value="@(Model != null ? Model.InstitutionId:" ")" name="InstitutionId"
+                                                    class=" form-control" placeholder="Institution Id" />
+                    @Html.ValidationMessage("InstitutionId", new { @class = "text-danger" }) <br />
+                    <h4>Name</h4>  <input type="text" value="@(Model!= null ? Model.Name:" ")" name="Name"
+                                          class="form-control" placeholder="Name" />
+                    @Html.ValidationMessage("Name", new { @class = "text-danger" }) <br />
 
-                    <h4>Course Details</h4>  <input type="text" value="@(Model!= null ? Model.Details:"")" name="Details" 
+                    <h4>Course Details</h4>  <input type="text" value="@(Model!= null ? Model.Details:" ")" name="Details"
                                                     class="form-control" placeholder="Details" />
+                    @Html.ValidationMessage("Details", new { @class = "text-danger" }) <br />
 
-                    <h4>Course Fee</h4>  <input type="text" value="@(Model != null ? Model.Price:"")" name="Price" 
+                    <h4>Course Fee</h4>  <input type="text" value="@(Model != null ? Model.Price:" ")" name="Price"
                                                 class=" form-control" placeholder="Price" />
-                    <h4>Duration</h4>  <input type="text" value="@(Model != null ? Model.Duration:"")" name="Duration"
-                                              class=" form-control"  placeholder="Duration"/>
-                    <h4>Date</h4>  <input type="date" value="@(Model != null ? Model.Date:"")" name="Date" 
+                    @Html.ValidationMessage("Price", new { @class = "text-danger" }) <br />
+                    <h4>Duration</h4>  <input type="text" value="@(Model != null ? Model.Duration:" ")" name="Duration"
+                                              class=" form-control" placeholder="Duration" />
+                    @Html.ValidationMessage("Duration", new { @class = "text-danger" }) <br />
+                    <h4>Date</h4>  <input type="date" value="@(Model != null ? Model.Date:" ")" name="Date"
                                           class=" form-control" placeholder="Date" />
-                    <h4>Mentor Id</h4>  <input type="text" value="@(Model != null ? Model.MentorId:"")" name="MentorId" 
-                                               class=" form-control" placeholder="Mentor Id"/>
-                    <h4>Photo</h4>  <input type="text" value="@(Model != null ? Model.Photo:"")" name="Photo" 
+
+                    <h4>Mentor Id</h4>  <input type="text" value="@(Model != null ? Model.MentorId:" ")" name="MentorId"
+                                               class=" form-control" placeholder="Mentor Id" />
+                    @Html.ValidationMessage("MentorId", new { @class = "text-danger" }) <br />
+                    <h4>Photo</h4>  <input type="text" value="@(Model != null ? Model.Photo:" ")" name="Photo"
                                            class=" form-control" placeholder="Photo" />
+                    @Html.ValidationMessage("Photo", new { @class = "text-danger" }) <br />
 
 
                     <br />

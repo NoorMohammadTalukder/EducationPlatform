@@ -11,15 +11,20 @@ namespace EducationPlatform.Models
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.ComponentModel.DataAnnotations;
+
     public partial class CourseDetail
     {
         public int Id { get; set; }
         public Nullable<int> CourseId { get; set; }
         public Nullable<int> MentorId { get; set; }
+        [Required(ErrorMessage = "Please provide Material URL")]
         public string Material { get; set; }
+        [Required(ErrorMessage = "Please provide Description")]
         public string Description { get; set; }
+        [Required(ErrorMessage = "Please provide Module")]
         public string Module { get; set; }
+        [Required(ErrorMessage = "Please provide Date")]
         public Nullable<System.DateTime> Date { get; set; }
     
         public virtual Cours Cours { get; set; }

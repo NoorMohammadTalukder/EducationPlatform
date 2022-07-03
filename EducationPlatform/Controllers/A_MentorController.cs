@@ -28,8 +28,8 @@ namespace EducationPlatform.Controllers
         public ActionResult MentorAdd(Mentor obj)
         {
             
-           // if (ModelState.IsValid)
-           // {
+            if (ModelState.IsValid)
+            {
                 var db = new EducationPlatformEntities();
                 string instituteEmail = Session["instituteEmail"].ToString();
 
@@ -78,8 +78,8 @@ namespace EducationPlatform.Controllers
 
                 return RedirectToAction("Index", "A_Institution");
 
-          // }
-          //  return View(obj);
+           }
+           return View(obj);
 
 
                  

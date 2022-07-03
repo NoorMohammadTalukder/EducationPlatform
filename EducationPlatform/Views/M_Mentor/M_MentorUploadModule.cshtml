@@ -26,14 +26,19 @@
 
                     <tr>
                         <td>  <h3 class="text-uppercase">Material</h3></td>
-                        <td>    <input type="url" name="Material" value="" class="form-control text-center fw-bolder" /></td>
+                        <td>
+                            <input type="url" name="Material" value="@(Model !=null ? Model.Material:"")" class="form-control text-center fw-bolder" />
+                            @Html.ValidationMessage("Material")
+                        </td>
+                   
                     </tr>
                     <tr>
                         <td>
                             <h3 class="text-uppercase">MODULE</h3>
                         </td>
                         <td>
-                            <input type="text" name="Module" value="" class="form-control text-center fw-bolder" />
+                            <input type="text" name="Module" value="@(Model !=null ? Model.Module:"")" class="form-control text-center fw-bolder" />
+                            @Html.ValidationMessage("Module")
                         </td>
                     </tr>
 
@@ -42,7 +47,8 @@
                             <h3 class="text-uppercase">Description</h3>
                         </td>
                         <td>
-                            <input type="text" name="Description" value="" class="form-control text-center fw-bolder" />
+                            <input type="text" name="Description" value="@(Model !=null ? Model.Description:"")" class="form-control text-center fw-bolder" />
+                            @Html.ValidationMessage("Description", new { @class = "text-danger" })
                         </td>
                     </tr>
 
@@ -53,6 +59,7 @@
                         </td>
                         <td>
                             <input type="date" name="Date" value="@(Model !=null ? Model.Date:"")" class="form-control text-center fw-bolder" />
+                            @Html.ValidationMessage("Date", new { @class = "text-danger" })
                         </td>
                     </tr>
 

@@ -11,15 +11,19 @@ namespace EducationPlatform.Models
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.ComponentModel.DataAnnotations;
+
     public partial class Counseling
     {
         public int Id { get; set; }
         public Nullable<int> MentorId { get; set; }
         public Nullable<int> StudentId { get; set; }
         public Nullable<int> CourseId { get; set; }
+        [Required(ErrorMessage = "Please provide Link")]
         public string MeetLink { get; set; }
+        [Required(ErrorMessage = "Please provide Details")]
         public string Details { get; set; }
+        [Required(ErrorMessage = "Please provide Date")]
         public Nullable<System.DateTime> Date { get; set; }
     
         public virtual Mentor Mentor { get; set; }

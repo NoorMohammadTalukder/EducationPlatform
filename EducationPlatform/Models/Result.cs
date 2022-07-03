@@ -11,15 +11,19 @@ namespace EducationPlatform.Models
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.ComponentModel.DataAnnotations;
+
     public partial class Result
     {
         public int Id { get; set; }
         public Nullable<int> StudentId { get; set; }
         public Nullable<int> MentorId { get; set; }
         public Nullable<int> AssignmentId { get; set; }
+        [Required(ErrorMessage = "Please provide Mark")]
         public Nullable<double> Mark { get; set; }
+        [Required(ErrorMessage = "Please provide Comment")]
         public string Comment { get; set; }
+        [Required(ErrorMessage = "Please provide Date")]
         public Nullable<System.DateTime> Date { get; set; }
         public Nullable<int> CourseId { get; set; }
         public string CourseName { get; set; }

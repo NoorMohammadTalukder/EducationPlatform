@@ -25,25 +25,29 @@ namespace EducationPlatform.Controllers
         [HttpPost]
         public ActionResult StudentAdd(Student st)
         {
-            var db = new EducationPlatformEntities();
-            var students = new Student()
+            if (ModelState.IsValid)
             {
-                Id = st.Id,
-                Name = st.Name,
-                Address = st.Address,
-                Email = st.Email,
-                Phone = st.Phone,
-                Photo = st.Photo,
-                Education = st.Education,
-                Institution = st.Institution,
-                Password = st.Password,
-                IsValid = "Yes",
-                Gender = st.Gender,
+                var db = new EducationPlatformEntities();
+                var students = new Student()
+                {
+                    Id = st.Id,
+                    Name = st.Name,
+                    Address = st.Address,
+                    Email = st.Email,
+                    Phone = st.Phone,
+                    Photo = st.Photo,
+                    Education = st.Education,
+                    Institution = st.Institution,
+                    Password = st.Password,
+                    IsValid = "Yes",
+                    Gender = st.Gender,
 
-            };
-            db.Students.Add(students);
-            db.SaveChanges();
-            return RedirectToAction("StudentInformation");
+                };
+                db.Students.Add(students);
+                db.SaveChanges();
+                return RedirectToAction("StudentInformation");
+            }
+            return View(st);
         }
         public ActionResult StudentInformation()
         {

@@ -370,24 +370,30 @@ namespace EducationPlatform.Controllers
         public ActionResult InstitutionOfferedCourse(Cours obj)
         {
             var db = new EducationPlatformEntities();
-            var course = new Cours()
+            if (ModelState.IsValid)
             {
-                Name = obj.Name,
-                Details = obj.Details,
-                Price = obj.Price,
-                Duration = obj.Duration,
-                Date = obj.Date,
-                MentorId = obj.MentorId,
-                Photo = obj.Photo,
-                InstitutionId = obj.InstitutionId,
+                var course = new Cours()
+                {
+                    Name = obj.Name,
+                    Details = obj.Details,
+                    Price = obj.Price,
+                    Duration = obj.Duration,
+                    Date = obj.Date,
+                    MentorId = obj.MentorId,
+                    Photo = obj.Photo,
+                    InstitutionId = obj.InstitutionId,
 
 
-            };
-            // var course = db.Courses;
+                };
+                // var course = db.Courses;
 
-            db.Courses.Add(course);
-            db.SaveChanges();
-            return RedirectToAction("Index");
+                db.Courses.Add(course);
+                db.SaveChanges();
+                return RedirectToAction("Index");
+            }
+            return View(obj);
+
+                
         }
 
         [InstitutionLogged]
@@ -478,6 +484,11 @@ namespace EducationPlatform.Controllers
 
             return View();
         }
-
+        [InstitutionLogged]
+        public ActionResult InstitutionLogOut()
+        {
+            Session.Clear();
+            return RedirectToAction("LogIn");
+        }
     }
 }

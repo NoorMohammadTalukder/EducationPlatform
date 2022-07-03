@@ -132,21 +132,25 @@ namespace EducationPlatform.Controllers
         [HttpPost]
         public ActionResult M_MentorUpdate(Mentor obj)
         {
+            if (ModelState.IsValid)
+            {
 
-            var db = new EducationPlatformEntities();
-            var mentor = (from p in db.Mentors where p.Id == obj.Id select p).SingleOrDefault();
-            mentor.Id = obj.Id;
-            mentor.Name = obj.Name;
-            mentor.Address = obj.Address;
-            mentor.Email = obj.Email;
-            mentor.Phone = obj.Phone;
-            mentor.Password = obj.Password;
-            mentor.Gender = obj.Gender;
+                var db = new EducationPlatformEntities();
+                var mentor = (from p in db.Mentors where p.Id == obj.Id select p).SingleOrDefault();
+                mentor.Id = obj.Id;
+                mentor.Name = obj.Name;
+                mentor.Address = obj.Address;
+                mentor.Email = obj.Email;
+                mentor.Phone = obj.Phone;
+                mentor.Password = obj.Password;
+                mentor.Gender = obj.Gender;
+                mentor.Institution = obj.Institution;
 
-            //  db.Entry(mentor).CurrentValues.SetValues(obj);
-            db.SaveChanges();
-            return RedirectToAction("M_MentorInformation");
-
+                //  db.Entry(mentor).CurrentValues.SetValues(obj);
+                db.SaveChanges();
+                return RedirectToAction("M_MentorInformation");
+            }
+            return View(obj);
         }
         [HttpGet]
         public ActionResult M_MentorLogIN()
@@ -223,24 +227,26 @@ namespace EducationPlatform.Controllers
         public ActionResult M_MentorCounsiling(Counseling obj)
         {
             var courseid = Session["COURSEID"].ToString();
-
-
-            var db = new EducationPlatformEntities();
-            var email = Session["MentorEmail"].ToString();
-            var mentorId = (from i in db.Mentors where i.Email == email select i.Id).FirstOrDefault();
-            var counsiling = new Counseling()
+            if (ModelState.IsValid)
             {
-                MentorId = mentorId,
-                CourseId = int.Parse(courseid),
-                MeetLink = obj.MeetLink,
-                Details = obj.Details,
-                Date = obj.Date,
-            };
-            db.Counselings.Add(counsiling);
-            db.SaveChanges();
-            // db.Counselings.Add(obj);
-            return RedirectToAction("M_MentorCourseDetails");
 
+                var db = new EducationPlatformEntities();
+                var email = Session["MentorEmail"].ToString();
+                var mentorId = (from i in db.Mentors where i.Email == email select i.Id).FirstOrDefault();
+                var counsiling = new Counseling()
+                {
+                    MentorId = mentorId,
+                    CourseId = int.Parse(courseid),
+                    MeetLink = obj.MeetLink,
+                    Details = obj.Details,
+                    Date = obj.Date,
+                };
+                db.Counselings.Add(counsiling);
+                db.SaveChanges();
+                // db.Counselings.Add(obj);
+                return RedirectToAction("M_MentorCourseDetails");
+            }
+            return View(obj);
         }
 
         [MentorLoginAuth]
@@ -256,20 +262,25 @@ namespace EducationPlatform.Controllers
         public ActionResult M_MentorNotice(Notice obj)
         {
             var courseid = Session["COURSEID"].ToString();
-            var db = new EducationPlatformEntities();
+
+
             var email = Session["MentorEmail"].ToString();
-            var mentorId = (from i in db.Mentors where i.Email == email select i.Id).FirstOrDefault();
-            var mentorname = (from i in db.Mentors where i.Id == mentorId select i.Name).FirstOrDefault();
-            var notice = new Notice()
+            if (ModelState.IsValid)
             {
-                CourseId = int.Parse(courseid),
-                AnnouncedBy = mentorname,
-                AnnouncerId = mentorId,
-                Details = obj.Details,
-                Date = obj.Date,
-            };
-            db.Notices.Add(notice);
-            db.SaveChanges();
+
+                var db = new EducationPlatformEntities();
+                var mentorId = (from i in db.Mentors where i.Email == email select i.Id).FirstOrDefault();
+                var mentorname = (from i in db.Mentors where i.Id == mentorId select i.Name).FirstOrDefault();
+                var notice = new Notice()
+                {
+                    CourseId = int.Parse(courseid),
+                    AnnouncedBy = mentorname,
+                    AnnouncerId = mentorId,
+                    Details = obj.Details,
+                    Date = obj.Date,
+                };
+                db.Notices.Add(notice);
+                db.SaveChanges();
 
 
 
@@ -278,8 +289,9 @@ namespace EducationPlatform.Controllers
 
 
 
-            return RedirectToAction("M_MentorCourseDetails");
-
+                return RedirectToAction("M_MentorCourseDetails");
+            }
+            return View(obj);
         }
         [MentorLoginAuth]
         public ActionResult M_MentorRatings(int id)
@@ -307,23 +319,28 @@ namespace EducationPlatform.Controllers
         {
             var courseid = Session["COURSEID"].ToString();
             // TempData["id"]=courseid;
-            var db = new EducationPlatformEntities();
-            var email = Session["MentorEmail"].ToString();
-            var mentorId = (from i in db.Mentors where i.Email == email select i.Id).FirstOrDefault();
-            //  TempData["id"]=mentorId;
-            var assignment = new Assignment()
-            {
-                MentorId = mentorId,
-                CourseId = int.Parse(courseid),
-                Question = obj.Question,
-                Date = obj.Date,
-            };
-            // TempData["x"] = obj.Question;
-            // TempData["y"] = obj.Date;
-            db.Assignments.Add(assignment);
-            db.SaveChanges();
-            return RedirectToAction("M_MentorCourseDetails");
 
+            var email = Session["MentorEmail"].ToString();
+
+            if (ModelState.IsValid)
+            {
+                var db = new EducationPlatformEntities();
+                var mentorId = (from i in db.Mentors where i.Email == email select i.Id).FirstOrDefault();
+                //  TempData["id"]=mentorId;
+                var assignment = new Assignment()
+                {
+                    MentorId = mentorId,
+                    CourseId = int.Parse(courseid),
+                    Question = obj.Question,
+                    Date = obj.Date,
+                };
+                // TempData["x"] = obj.Question;
+                // TempData["y"] = obj.Date;
+                db.Assignments.Add(assignment);
+                db.SaveChanges();
+                return RedirectToAction("M_MentorCourseDetails");
+            }
+            return View(obj);
         }
         [MentorLoginAuth]
         [HttpGet]
@@ -338,21 +355,26 @@ namespace EducationPlatform.Controllers
         {
             var studentid = Session["StudentId"].ToString();
             var courseid = Session["COURSEID"].ToString();
-            var db = new EducationPlatformEntities();
-            var email = Session["MentorEmail"].ToString();
-            var mentorId = (from i in db.Mentors where i.Email == email select i.Id).FirstOrDefault();
 
-            var review = new Reviewstudent()
+            var email = Session["MentorEmail"].ToString();
+            if (ModelState.IsValid)
             {
-                MentorId = mentorId,
-                CourseId = int.Parse(courseid),
-                StudentId = int.Parse(studentid),
-                FeedBack = obj.FeedBack,
-                Date = obj.Date,
-            };
-            db.Reviewstudents.Add(review);
-            db.SaveChanges();
-            return RedirectToAction("M_MentorCourseDetails");
+                var db = new EducationPlatformEntities();
+                var mentorId = (from i in db.Mentors where i.Email == email select i.Id).FirstOrDefault();
+
+                var review = new Reviewstudent()
+                {
+                    MentorId = mentorId,
+                    CourseId = int.Parse(courseid),
+                    StudentId = int.Parse(studentid),
+                    FeedBack = obj.FeedBack,
+                    Date = obj.Date,
+                };
+                db.Reviewstudents.Add(review);
+                db.SaveChanges();
+                return RedirectToAction("M_MentorCourseDetails");
+            }
+            return View(obj);
         }
         [MentorLoginAuth]
         [HttpGet]
@@ -368,53 +390,58 @@ namespace EducationPlatform.Controllers
             var studentId = Session["studentId"].ToString();
 
             var coursid = Session["COURSEID"].ToString();
-            var db = new EducationPlatformEntities();
+
             var email = Session["MentorEmail"].ToString();
-            var recomanderId = (from i in db.Mentors where i.Email == email select i.Id).FirstOrDefault();
-            var recommanderName = (from i in db.Mentors where i.Email == email select i.Name).FirstOrDefault();
-
-            var certifacte = new Certificate()
+            if (ModelState.IsValid)
             {
+                var db = new EducationPlatformEntities();
+                var recomanderId = (from i in db.Mentors where i.Email == email select i.Id).FirstOrDefault();
+                var recommanderName = (from i in db.Mentors where i.Email == email select i.Name).FirstOrDefault();
 
-                CourseId = int.Parse(coursid),
-                RecommderId = recomanderId,
-                RecomendBy = recommanderName,
-                Status = "Pending",
-                Comments = obj.Comments,
-                Date = obj.Date,
-                ApplierId = int.Parse(studentId),
-            };
-            db.Certificates.Add(certifacte);
-            db.SaveChanges();
+                var certifacte = new Certificate()
+                {
 
-            MailMessage mail = new MailMessage();
-            // var studentId = (from p in db.Results where p.Id == id select p.StudentId).FirstOrDefault();
-            var studentid = int.Parse(studentId);
-            var studentEmail = (from p in db.Students where p.Id == studentid select p.Email).FirstOrDefault();
-            var studentName = (from p in db.Students where p.Id == studentid select p.Name).FirstOrDefault();
-            mail.To.Add(studentEmail);
-            mail.From = new MailAddress("19-40116-1@student.aiub.edu");
-            mail.Subject = "Your  certificate is recommanded by " + recommanderName;
-            string Body = "Hello " + studentName + "<br/>Your certificate is recommanded by " + recommanderName + " wait for approval of ABC Education  <br/>" +
-                "Check the Website";
+                    CourseId = int.Parse(coursid),
+                    RecommderId = recomanderId,
+                    RecomendBy = recommanderName,
+                    Status = "Pending",
+                    Comments = obj.Comments,
+                    Date = obj.Date,
+                    ApplierId = int.Parse(studentId),
+                };
+                db.Certificates.Add(certifacte);
+                db.SaveChanges();
 
-            mail.Body = Body;
-            mail.IsBodyHtml = true;
-            SmtpClient smtp = new SmtpClient();
-            smtp.Host = "smtp-mail.outlook.com";
-            smtp.Port = 587;
-            smtp.UseDefaultCredentials = false;
-            smtp.Credentials = new System.Net.NetworkCredential("19-40116-1@student.aiub.edu", "aleX@monaf 32");
-            smtp.EnableSsl = true;
-            smtp.Send(mail);
+                MailMessage mail = new MailMessage();
+                // var studentId = (from p in db.Results where p.Id == id select p.StudentId).FirstOrDefault();
+                var studentid = int.Parse(studentId);
+                var studentEmail = (from p in db.Students where p.Id == studentid select p.Email).FirstOrDefault();
+                var studentName = (from p in db.Students where p.Id == studentid select p.Name).FirstOrDefault();
+                mail.To.Add(studentEmail);
+                mail.From = new MailAddress("19-40116-1@student.aiub.edu");
+                mail.Subject = "Your  certificate is recommanded by " + recommanderName;
+                string Body = "Hello " + studentName + "<br/>Your certificate is recommanded by " + recommanderName + " wait for approval of ABC Education  <br/>" +
+                    "Check the Website";
+
+                mail.Body = Body;
+                mail.IsBodyHtml = true;
+                SmtpClient smtp = new SmtpClient();
+                smtp.Host = "smtp-mail.outlook.com";
+                smtp.Port = 587;
+                smtp.UseDefaultCredentials = false;
+                smtp.Credentials = new System.Net.NetworkCredential("19-40116-1@student.aiub.edu", "aleX@monaf 32");
+                smtp.EnableSsl = true;
+                smtp.Send(mail);
 
 
 
 
 
-            //TempData["x"] = studentId;
-            //TempData["y"] = coursid;
-            return RedirectToAction("M_MentorCourseDetails");
+                //TempData["x"] = studentId;
+                //TempData["y"] = coursid;
+                return RedirectToAction("M_MentorCourseDetails");
+            }
+            return View(obj);
         }
         [MentorLoginAuth]
         [HttpGet]
@@ -432,37 +459,42 @@ namespace EducationPlatform.Controllers
             var studentId = Session["studentId"].ToString();
             //   var courseId = Session["courseId"].ToString();
             //   var id = int.Parse(courseId);
-            var db = new EducationPlatformEntities();
+
             //  var coursename = (from p in db.Courses where p.Id == id select p.Name).FirstOrDefault();
             var email = Session["MentorEmail"].ToString();
-            var mentorId = (from i in db.Mentors where i.Email == email select i.Id).FirstOrDefault();
-
-            var courseId = (from i in db.Assignments where i.MentorId == mentorId select i.CourseId).FirstOrDefault();
-            var institutionid = (from i in db.Transactions where i.CourseId == courseId select i.InstitutionId).FirstOrDefault();
-            var courseName = (from i in db.Courses where i.Id == courseId select i.Name).FirstOrDefault();
-
-            //var studentId = (from i in db.Certificates where i.CourseId == courseId select i.ApplierId).FirstOrDefault();
-
-            //  var studentId = Session["studentId"].ToString();
-
-
-            var assignmentId = (from i in db.Assignments where i.MentorId == mentorId select i.Id).FirstOrDefault();
-            //  var studentId = (from i in db.AnswerScripts where i.AssignmentId == assignmentId select i.StudentId).FirstOrDefault();
-            var result = new Result()
+            if (ModelState.IsValid)
             {
-                CourseId = courseId,
-                CourseName = courseName,
-                StudentId = int.Parse(studentId),
-                MentorId = mentorId,
-                AssignmentId = assignmentId,
-                InstitutionId = institutionid,
-                Mark = obj.Mark,
-                Date = obj.Date,
-                Comment = obj.Comment,
-            };
-            db.Results.Add(result);
-            db.SaveChanges();
-            return RedirectToAction("M_MentorCourseDetails");
+                var db = new EducationPlatformEntities();
+                var mentorId = (from i in db.Mentors where i.Email == email select i.Id).FirstOrDefault();
+
+                var courseId = (from i in db.Assignments where i.MentorId == mentorId select i.CourseId).FirstOrDefault();
+                var institutionid = (from i in db.Transactions where i.CourseId == courseId select i.InstitutionId).FirstOrDefault();
+                var courseName = (from i in db.Courses where i.Id == courseId select i.Name).FirstOrDefault();
+
+                //var studentId = (from i in db.Certificates where i.CourseId == courseId select i.ApplierId).FirstOrDefault();
+
+                //  var studentId = Session["studentId"].ToString();
+
+
+                var assignmentId = (from i in db.Assignments where i.MentorId == mentorId select i.Id).FirstOrDefault();
+                //  var studentId = (from i in db.AnswerScripts where i.AssignmentId == assignmentId select i.StudentId).FirstOrDefault();
+                var result = new Result()
+                {
+                    CourseId = courseId,
+                    CourseName = courseName,
+                    StudentId = int.Parse(studentId),
+                    MentorId = mentorId,
+                    AssignmentId = assignmentId,
+                    InstitutionId = institutionid,
+                    Mark = obj.Mark,
+                    Date = obj.Date,
+                    Comment = obj.Comment,
+                };
+                db.Results.Add(result);
+                db.SaveChanges();
+                return RedirectToAction("M_MentorCourseDetails");
+            }
+            return View(obj);
 
         }
         [MentorLoginAuth]
@@ -581,23 +613,27 @@ namespace EducationPlatform.Controllers
         public ActionResult M_MentorUploadModule(CourseDetail obj)
         {
             var courseid = Session["courseid"].ToString();
-
-            var db = new EducationPlatformEntities();
             var email = Session["MentorEmail"].ToString();
-            var mentorId = (from i in db.Mentors where i.Email == email select i.Id).FirstOrDefault();
-            var module = new CourseDetail()
+            if (ModelState.IsValid)
             {
-                CourseId = int.Parse(courseid),
-                MentorId = mentorId,
-                Material = obj.Material,
-                Module = obj.Module,
-                Date = obj.Date,
-                Description = obj.Description,
-            };
-            db.CourseDetails.Add(module);
-            db.SaveChanges();
+                var db = new EducationPlatformEntities();
 
-            return RedirectToAction("Index");
+                var mentorId = (from i in db.Mentors where i.Email == email select i.Id).FirstOrDefault();
+                var module = new CourseDetail()
+                {
+                    CourseId = int.Parse(courseid),
+                    MentorId = mentorId,
+                    Material = obj.Material,
+                    Module = obj.Module,
+                    Date = obj.Date,
+                    Description = obj.Description,
+                };
+                db.CourseDetails.Add(module);
+                db.SaveChanges();
+
+                return RedirectToAction("M_MentorInformation");
+            }
+            return View(obj);
 
         }
         [MentorLoginAuth]

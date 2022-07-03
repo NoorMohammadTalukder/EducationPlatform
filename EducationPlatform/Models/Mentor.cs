@@ -22,23 +22,23 @@ namespace EducationPlatform.Models
         }
     
         public int Id { get; set; }
-       // [Required(ErrorMessage = "Please provide Name")]
+       [Required(ErrorMessage = "Please provide Name")]
     
         public string Name { get; set; }
-       // [Required(ErrorMessage = "Please provide address")]
+       [Required(ErrorMessage = "Please provide address")]
         public string Address { get; set; }
-       // [Required(ErrorMessage = "Please provide Email")]
-       // [EmailAddress(ErrorMessage = "Email format not matched ")]
+        [Required(ErrorMessage = "Please provide Email")]
+        [EmailAddress(ErrorMessage = "Email format not matched ")]
         public string Email { get; set; }
-       // [Required(ErrorMessage = "Please provide Phone Number")]
-        //[Phone(ErrorMessage = "Please provide Phone number")]
+       [Required(ErrorMessage = "Please provide Phone Number")]
+        [Phone(ErrorMessage = "Please provide Phone number")]
         public string Phone { get; set; }
-       // [Required(ErrorMessage = "Please provide Password")]
+        [Required(ErrorMessage = "Please provide Password")]
         public string Password { get; set; }
         public byte[] Photo { get; set; }
 
         public string Gender { get; set; }
-        //[Required(ErrorMessage = "Please provide Institution")]
+        [Required(ErrorMessage = "Please provide Institution")]
         public string Institution { get; set; }
         public string IsValid { get; set; }
     

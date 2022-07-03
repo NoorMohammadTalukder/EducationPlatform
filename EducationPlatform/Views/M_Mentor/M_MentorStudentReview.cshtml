@@ -19,8 +19,10 @@
         <div class="col-lg-4 shadow p-3 mb-5 bg-body rounded">
             <form action="" method="post">
 
-                <input type="text" name="FeedBack" value="" class="form-control text-uppercase text-center fw-bolder" placeholder="FeedBack" />
-                <input type="date" name="Date" value="" class="form-control text-uppercase text-center fw-bolder" placeholder="DATE" />
+                <input type="text" name="FeedBack" value="@(Model !=null ? Model.FeedBack:"")" class="form-control text-uppercase text-center fw-bolder" placeholder="FeedBack" />
+                @Html.ValidationMessage("FeedBack", new { @class = "text-danger" })
+                <input type="date" name="Date" value="@(Model !=null ? Model.Date:"")" class="form-control text-uppercase text-center fw-bolder" placeholder="DATE" />
+                @Html.ValidationMessage("Date", new { @class = "text-danger" })
                 <br />
                 <button type="submit" class="btn shadow btn-success">Submit</button>
 

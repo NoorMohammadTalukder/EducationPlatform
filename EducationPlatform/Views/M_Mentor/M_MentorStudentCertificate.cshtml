@@ -16,8 +16,10 @@
         <div class="col-lg-4 shadow p-3 mb-5 bg-body rounded">
             <form action="" method="post">
 
-                <input type="text" name="Comments" value="" class="form-control text-uppercase text-center fw-bolder" placeholder="Comment" />
-                <input type="date" name="Date" value="" class="form-control text-uppercase text-center fw-bolder" placeholder="DATE" />
+                <input type="text" name="Comments" value="@(Model !=null ? Model.Comments:"")" class="form-control text-uppercase text-center fw-bolder" placeholder="Comment" />
+                @Html.ValidationMessage("Comments", new { @class = "text-danger" })
+                <input type="date" name="Date" value="@(Model !=null ? Model.Date:"")" class="form-control text-uppercase text-center fw-bolder" placeholder="DATE" />
+                @Html.ValidationMessage("Date", new { @class = "text-danger" })
                 <br />
                 <button type="submit" class="btn shadow btn-success">Submit</button>
 

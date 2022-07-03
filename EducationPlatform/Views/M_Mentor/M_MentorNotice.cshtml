@@ -17,9 +17,11 @@
 
             <form action="" method="post">
 
-                <input type="text" name="Details" value="" class="form-control text-dark text-uppercase text-center fw-bolder" placeholder="DETAILS" />
+                <input type="text" name="Details" value="@(Model !=null ? Model.Name:"Details")" class="form-control text-dark text-uppercase text-center fw-bolder" placeholder="DETAILS" />
+                @Html.ValidationMessage("Details", new { @class = "text-danger" })
                 <br />
-                <input type="date" name="Date" value="" class="form-control text-dark text-uppercase text-center fw-bolder" placeholder="DATE" />
+                <input type="date" name="Date" value="@(Model !=null ? Model.Date:"")" class="form-control text-dark text-uppercase text-center fw-bolder" placeholder="DATE" />
+                @Html.ValidationMessage("Date", new { @class = "text-danger" })
                 <br />
                 <button type="submit" class="btn btn-success shadow text-uppercase fw-bolder">Submit</button>
 

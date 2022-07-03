@@ -60,7 +60,8 @@
                             </td>
 
                             <td>
-                                <input type="text" name="Mark" value="" class="form-control text-center fw-bolder" />
+                                <input type="text" name="Mark" value="@(Model !=null ? Model.Mark:"")" class="form-control text-center fw-bolder" />
+                                @Html.ValidationMessage("Mark")
                             </td>
                         </tr>
                         <tr>
@@ -69,7 +70,8 @@
                             </td>
 
                             <td>
-                                <input type="text" name="Comment" value="" class="form-control text-center fw-bolder" />
+                                <input type="text" name="Comment" value="@(Model !=null ? Model.Comment:"")" class="form-control text-center fw-bolder" />
+                                @Html.ValidationMessage("Comment", new { @class = "text-danger" })
                             </td>
                         </tr>
                         <tr>
@@ -78,7 +80,8 @@
                             </td>
 
                             <td>
-                                <input type="date" name="Date" value="" class="form-control text-center fw-bolder" />
+                                <input type="date" name="Date" value="@(Model !=null ? Model.Date:"")" class="form-control text-center fw-bolder" />
+                                @Html.ValidationMessage("Date", new { @class = "text-danger" })
                             </td>
                         </tr>
                        
