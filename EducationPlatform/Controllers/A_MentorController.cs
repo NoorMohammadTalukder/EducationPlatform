@@ -27,54 +27,64 @@ namespace EducationPlatform.Controllers
 
         public ActionResult MentorAdd(Mentor obj)
         {
-            var db = new EducationPlatformEntities();
+            
+           // if (ModelState.IsValid)
+           // {
+                var db = new EducationPlatformEntities();
+                string instituteEmail = Session["instituteEmail"].ToString();
 
-            string instituteEmail = Session["instituteEmail"].ToString();
+                var y = (from i in db.Institutions
+                         where i.Email == instituteEmail
+                         select
+                       i.Name).FirstOrDefault();
+                var x = new Mentor()
+                {
+                    Name = obj.Name,
+                    Address = obj.Address,
+                    Email = obj.Email,
+                    Phone = obj.Phone,
+                    Password = obj.Password,
+                    Gender = obj.Gender,
+                    Institution = y,
+                    IsValid = "Yes"
+                };
 
-            var y = (from i in db.Institutions
-                     where i.Email == instituteEmail
-                     select
-                   i.Name).FirstOrDefault();
-            var x = new Mentor()
-            {
-                Name = obj.Name,
-                Address = obj.Address,
-                Email = obj.Email,
-                Phone = obj.Phone,
-                Password = obj.Password,
-                Gender = obj.Gender,
-                Institution = y,
-                IsValid = "Yes"
-            };
+                db.Mentors.Add(x);
+                db.SaveChanges();
 
-            db.Mentors.Add(x);
-            db.SaveChanges();
+                MailMessage mail = new MailMessage();
+                mail.To.Add(obj.Email);
+                mail.From = new MailAddress("19-40135-1@student.aiub.edu");
+                mail.Subject = "Profile created in ABC Education";
+                string Body = "Congratulations!! <br/>" +
+                               "Your profile has been added <br/>" +
+                               "Your email:" + obj.Email + "<br/>" +
+                               "Your password:" + obj.Password + "<br/>" +
+                               "Please use this email and password to login" + "<br/>" +
+                               "<br/>" +
+                               "<b>Best Wishes</b><br/>" +
 
-            MailMessage mail = new MailMessage();
-            mail.To.Add(obj.Email);
-            mail.From = new MailAddress("19-40135-1@student.aiub.edu");
-            mail.Subject = "Profile created in ABC Education";
-            string Body = "Congratulations!! <br/>" +
-                           "Your profile has been added <br/>" +
-                           "Your email:" + obj.Email + "<br/>" +
-                           "Your password:" + obj.Password + "<br/>" +
-                           "Please use this email and password to login" + "<br/>" +
-                           "<br/>" +
-                           "<b>Best Wishes</b><br/>" +
+                               y;
 
-                           y;
+                mail.Body = Body;
+                mail.IsBodyHtml = true;
+                SmtpClient smtp = new SmtpClient();
+                smtp.Host = "smtp-mail.outlook.com";
+                smtp.Port = 587;
+                smtp.UseDefaultCredentials = false;
+                smtp.Credentials = new System.Net.NetworkCredential("19-40135-1@student.aiub.edu", "Honest9016*"); // Enter seders User name and password
+                smtp.EnableSsl = true;
+                smtp.Send(mail);
 
-            mail.Body = Body;
-            mail.IsBodyHtml = true;
-            SmtpClient smtp = new SmtpClient();
-            smtp.Host = "smtp-mail.outlook.com";
-            smtp.Port = 587;
-            smtp.UseDefaultCredentials = false;
-            smtp.Credentials = new System.Net.NetworkCredential("19-40135-1@student.aiub.edu", "Honest9016*"); // Enter seders User name and password
-            smtp.EnableSsl = true;
-            smtp.Send(mail);
+                return RedirectToAction("Index", "A_Institution");
 
-            return RedirectToAction("Index", "A_Institution");
+          // }
+          //  return View(obj);
+
+
+                 
+
+               
         }
         public ActionResult MentorList()
         {

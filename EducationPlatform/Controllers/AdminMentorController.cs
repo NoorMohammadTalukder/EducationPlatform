@@ -32,22 +32,27 @@ namespace EducationPlatform.Controllers
         public ActionResult MentorAdd(Mentor obj)
         {
             var db = new EducationPlatformEntities();
-            var mentor = new Mentor()
-                                    {
-                                        Name = obj.Name,
-                                        Address = obj.Address,
-                                        Email = obj.Email,
-                                        Phone = obj.Phone,
-                                        Password = obj.Password,
-                                        Gender = obj.Gender,
-                                        Institution= obj.Institution,
-                                        IsValid = "Yes",
+            if (ModelState.IsValid)
+            {
+                var mentor = new Mentor()
+                {
+                    Name = obj.Name,
+                    Address = obj.Address,
+                    Email = obj.Email,
+                    Phone = obj.Phone,
+                    Password = obj.Password,
+                    Gender = obj.Gender,
+                    Institution = obj.Institution,
+                    IsValid = "Yes",
 
 
-                                    };
-            db.Mentors.Add(mentor);
-            db.SaveChanges();
-            return RedirectToAction("Index", "Admin"); //---action name, controller name
+                };
+                db.Mentors.Add(mentor);
+                db.SaveChanges();
+                return RedirectToAction("Index", "Admin"); //---action name, controller name
+            }
+            return View(obj);
+               
         }
 
         public ActionResult MentorDelete(int id)
@@ -62,7 +67,7 @@ namespace EducationPlatform.Controllers
         }
 
         //--------update function for Mentor
-        [HttpGet]
+       [HttpGet]
         public ActionResult MentorUpdate(int id)
         {
             var db = new EducationPlatformEntities();
@@ -75,8 +80,8 @@ namespace EducationPlatform.Controllers
         {
             var db = new EducationPlatformEntities();
             var mentor = (from i in db.Mentors
-                               where i.Id == obj.Id
-                               select i).FirstOrDefault();
+                          where i.Id == obj.Id
+                          select i).FirstOrDefault();
             //db.Entry(institution).CurrentValues.SetValues(obj);
             mentor.Name = obj.Name;
             mentor.Address = obj.Address;
@@ -116,7 +121,10 @@ namespace EducationPlatform.Controllers
 
 
             return RedirectToAction("MentorList");
+
+
         }
+      
 
         //------Activate deactivate function
 

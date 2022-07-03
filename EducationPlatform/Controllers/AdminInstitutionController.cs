@@ -37,49 +37,58 @@ namespace EducationPlatform.Controllers
         public ActionResult InstitutionUpdate(Institution obj)
         {
             var db=new EducationPlatformEntities();
-            var institution=(from i in db.Institutions
-                             where i.Id == obj.Id
-                             select i).FirstOrDefault();
-            //db.Entry(institution).CurrentValues.SetValues(obj);
-            institution.Name = obj.Name;
-            institution.Address = obj.Address;
-            institution.Email = obj.Email;
-            institution.Phone = obj.Phone;
-            institution.Password = obj.Password;
-            institution.WebsiteLink = obj.WebsiteLink;
+            if (ModelState.IsValid)
+            {
+                var institution = (from i in db.Institutions
+                                   where i.Id == obj.Id
+                                   select i).FirstOrDefault();
+                //db.Entry(institution).CurrentValues.SetValues(obj);
+                institution.Name = obj.Name;
+                institution.Address = obj.Address;
+                institution.Email = obj.Email;
+                institution.Phone = obj.Phone;
+                institution.Password = obj.Password;
+                institution.WebsiteLink = obj.WebsiteLink;
 
 
-            db.SaveChanges();
+                db.SaveChanges();
 
-            //------------------------mail-------
-            //-------mail work----------------
+                //------------------------mail-------
+                //-------mail work----------------
 
-            MailMessage mail = new MailMessage();
-            mail.To.Add(obj.Email);
-            mail.From = new MailAddress("19-40649-1@student.aiub.edu");
-            mail.Subject = "Your Profile has updated by Admin of ABC Education";
-            string Body = "Hello sir <br/>" +
-                           "Your profile has been updated by our admin panel <br/>" +
-                           "Your new username or mail:" + obj.Email + "<br/>" +
-                           "Your new password:" + obj.Password + "<br/>" +
-                           "Please login to check the update" + "<br/>" +
-                           "<br/>" +
-                           "<b>Best Regards</b><br/>" +
-                           "Admin Panel <br/>" +
-                           "ABC Education";
+                MailMessage mail = new MailMessage();
+                mail.To.Add(obj.Email);
+                mail.From = new MailAddress("19-40649-1@student.aiub.edu");
+                mail.Subject = "Your Profile has updated by Admin of ABC Education";
+                string Body = "Hello sir <br/>" +
+                               "Your profile has been updated by our admin panel <br/>" +
+                               "Your new username or mail:" + obj.Email + "<br/>" +
+                               "Your new password:" + obj.Password + "<br/>" +
+                               "Please login to check the update" + "<br/>" +
+                               "<br/>" +
+                               "<b>Best Regards</b><br/>" +
+                               "Admin Panel <br/>" +
+                               "ABC Education";
 
-            mail.Body = Body;
-            mail.IsBodyHtml = true;
-            SmtpClient smtp = new SmtpClient();
-            smtp.Host = "smtp-mail.outlook.com";
-            smtp.Port = 587;
-            smtp.UseDefaultCredentials = false;
-            smtp.Credentials = new System.Net.NetworkCredential("19-40649-1@student.aiub.edu", "*noor*jaja*9027*"); // Enter seders User name and password  
-            smtp.EnableSsl = true;
-            smtp.Send(mail);
+                mail.Body = Body;
+                mail.IsBodyHtml = true;
+                SmtpClient smtp = new SmtpClient();
+                smtp.Host = "smtp-mail.outlook.com";
+                smtp.Port = 587;
+                smtp.UseDefaultCredentials = false;
+                smtp.Credentials = new System.Net.NetworkCredential("19-40649-1@student.aiub.edu", "*noor*jaja*9027*"); // Enter seders User name and password  
+                smtp.EnableSsl = true;
+                smtp.Send(mail);
 
-         
-            return RedirectToAction("InstitutionList");
+
+                return RedirectToAction("InstitutionList");
+            }
+
+            return View(obj);
+
+
+
+                
         }
 
         [HttpGet]
@@ -91,21 +100,26 @@ namespace EducationPlatform.Controllers
         public ActionResult InstitutionAdd(Institution obj)
         {
             var db= new EducationPlatformEntities();
-            var instituition=new Institution()
+            if (ModelState.IsValid)
             {
-                Name = obj.Name,
-                Address = obj.Address,
-                Email = obj.Email,
-                Phone = obj.Phone,
-                Password = obj.Password,
-                WebsiteLink = obj.WebsiteLink,
-                IsValid = "Yes",
-                
+                var instituition = new Institution()
+                {
+                    Name = obj.Name,
+                    Address = obj.Address,
+                    Email = obj.Email,
+                    Phone = obj.Phone,
+                    Password = obj.Password,
+                    WebsiteLink = obj.WebsiteLink,
+                    IsValid = "Yes",
 
-            };
-            db.Institutions.Add(instituition);
-            db.SaveChanges();
-            return RedirectToAction("Index", "Admin"); //---action name, controller name
+
+                };
+                db.Institutions.Add(instituition);
+                db.SaveChanges();
+                return RedirectToAction("Index", "Admin"); //---action name, controller name
+            }
+            return View(obj);
+                
         }
 
         public ActionResult InstitutionDelete(int id)

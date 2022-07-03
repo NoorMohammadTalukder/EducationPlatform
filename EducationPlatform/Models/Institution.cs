@@ -11,7 +11,8 @@ namespace EducationPlatform.Models
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.ComponentModel.DataAnnotations;
+
     public partial class Institution
     {
         public Institution()
@@ -20,11 +21,19 @@ namespace EducationPlatform.Models
         }
     
         public int Id { get; set; }
+        [Required(ErrorMessage = "Please provide Name")]
         public string Name { get; set; }
+        [Required(ErrorMessage = "Please provide Address")]
         public string Address { get; set; }
+        [Required(ErrorMessage = "Please provide Email")]
+        [EmailAddress(ErrorMessage = "Email format not matched ")]
         public string Email { get; set; }
+        [Required(ErrorMessage = "Please provide Phone Number")]
+        [Phone(ErrorMessage = "Please provide Phone number")]
         public string Phone { get; set; }
+        [Required(ErrorMessage = "Please provide Password")]
         public string Password { get; set; }
+        [Required(ErrorMessage = "Please provide Website")]
         public string WebsiteLink { get; set; }
         public string IsValid { get; set; }
         public byte[] Photo { get; set; }

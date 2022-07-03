@@ -35,22 +35,28 @@ namespace EducationPlatform.Controllers
         public ActionResult InstitutionRegistration(Institution obj)
         {
             var db = new EducationPlatformEntities();
-            var ins = new Institution()
+            if (ModelState.IsValid)
             {
-                Name = obj.Name,
-                Address = obj.Address,
-                Email = obj.Email,
-                Phone = obj.Phone,
-                Password = obj.Password,
-                WebsiteLink = obj.WebsiteLink,
-                IsValid = "No",
-                Photo = obj.Photo,
+                var ins = new Institution()
+                {
+                    Name = obj.Name,
+                    Address = obj.Address,
+                    Email = obj.Email,
+                    Phone = obj.Phone,
+                    Password = obj.Password,
+                    WebsiteLink = obj.WebsiteLink,
+                    IsValid = "No",
+                    Photo = obj.Photo,
 
-            };
-            db.Institutions.Add(ins);
+                };
+                db.Institutions.Add(ins);
 
-            db.SaveChanges();
-            return RedirectToAction("LogIn");
+                db.SaveChanges();
+                return RedirectToAction("LogIn");
+            }
+            return View(obj);
+
+           
         }
 
 

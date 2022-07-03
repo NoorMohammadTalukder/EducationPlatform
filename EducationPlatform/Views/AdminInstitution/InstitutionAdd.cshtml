@@ -91,34 +91,49 @@
                                 <tr>
                                     <td>Name:</td>
                                     <td>
-                                        <input type="text" name="Name" value="" class="form-control" />
-                                        <!--@Html.ValidationMessage("Name") -->
+                                        <input type="text" name="Name" value="@(Model != null ? Model.Name : "")" class="form-control" />
+                                        @Html.ValidationMessage("Name", new { @class = "text-danger" })
                                     </td>
                                 </tr>
                                 <tr>
 
                                     <td>Address</td>
-                                    <td><input type="text" name="Address" value="" class="form-control" /></td>
+                                    <td>
+                                        <input type="text" name="Address" value="@(Model != null ? Model.Address : "")" class="form-control" />
+                                        @Html.ValidationMessage("Address", new { @class = "text-danger" })
+                                    </td>
                                 </tr>
                                 <tr>
                                     <td>Email:</td>
 
-                                    <td><input type="text" name="Email" value="" class="form-control" /></td>
+                                    <td>
+                                        <input type="text" name="Email" value="@(Model != null ? Model.Email : "")" class="form-control" />
+                                        @Html.ValidationMessage("Email", new { @class = "text-danger" })
+                                    </td>
                                 </tr>
                                 <tr>
                                     <td>Phone:</td>
 
-                                    <td><input type="text" name="Phone" value="" class="form-control" /></td>
+                                    <td>
+                                        <input type="text" name="Phone" value="@(Model != null ? Model.Phone : "")" class="form-control" />
+                                        @Html.ValidationMessage("Phone", new { @class = "text-danger" })
+                                    </td>
                                 </tr>
                                 <tr>
                                     <td>Password:</td>
 
-                                    <td><input type="text" name="Password" value="" class="form-control" /></td>
+                                    <td>
+                                        <input type="text" name="Password" value="@(Model != null ? Model.Password : "")" class="form-control" />
+                                        @Html.ValidationMessage("Password", new { @class = "text-danger" })
+                                    </td>
                                 </tr>
                                 <tr>
                                     <td>Website:</td>
 
-                                    <td><input type="text" name="WebsiteLink" value="" class="form-control" /></td>
+                                    <td>
+                                        <input type="text" name="WebsiteLink" value="@(Model != null ? Model.WebsiteLink : "")" class="form-control" />
+                                        @Html.ValidationMessage("WebsiteLink", new { @class = "text-danger" })
+                                    </td>
                                 </tr>
                                 <tr>
                                     <td></td>

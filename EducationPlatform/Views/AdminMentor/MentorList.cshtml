@@ -1,25 +1,8 @@
 ﻿
 @{
-    ViewBag.Title = "MentorList";
+    ViewBag.Title = "List";
 }
 
-@{
-    ViewBag.Title = "MentorAdd";
-}
-
-
-@{
-    ViewBag.Title = "SingleInstitutionList";
-}
-
-
-@{
-    ViewBag.Title = "InstitutionUpdate";
-}
-
-@{
-    ViewBag.Title = "Index";
-}
 
 <!DOCTYPE html>
 <html lang="en">
@@ -139,9 +122,10 @@
 
                                     </td>
                                     <td class="">
-                                        <a href="~/AdminMentor/MentorUpdate/@i.Id" class="btn btn-primary">Update</a>
+
                                         <a href="~/AdminMentor/MentorDelete/@i.Id" class="btn btn-danger m-1">Delete</a>
                                         <a href="~/AdminMentor/SingleMentorDetails/@i.Id" class="btn btn-success m-1">Details</a>
+                                        <a href="~/AdminMentor/MentorUpdate/@i.Id" class="btn btn-success m-1">Details</a>
                                     </td>
                                  
                                 </tr>

@@ -80,68 +80,72 @@
             <div class=" col-lg-9  ">
                 <div class="shadow-lg m-1 p-3 h-100 ">
                     <table class=" table table-striped table-bordered border-primary">
-
-                        <thead>
-                            <tr>
-                                <th scope="col">ID</th>
-                                <th scope="col">Name</th>
-                                <th scope="col">Address</th>
-                                <th scope="col">Email</th>
-                                <th scope="col">Phone</th>
-                                <th scope="col">Website Link</th>
-                                <th scope="col" class="text-center">Valid</th>
-
-                                <th scope="col"></th>
-
-                            </tr>
-                        </thead>
+                        <form action="" method="post">
                         <tbody>
-                            @foreach (var i in Model)
-                            {
-                                <tr>
-                                    <th scope="row">@i.Id</th>
-                                    <td>@i.Name</td>
-                                    <td>@i.Address</td>
-                                    <td>@i.Email</td>
-                                    <td>@i.Phone</td>
-                                    <td>@i.WebsiteLink</td>
-                                    <td>
 
-                                        @{ if (i.IsValid == "Yes")
-                                            {
-                                                <h6 class="bg-success text-center">@i.IsValid</h6>
-                                                <a href="~/AdminInstitution/InstitutionActivate/@i.Id" class="btn btn-success m-1">Activate Account</a>
-                                                <a href="~/AdminInstitution/InstitutionDeactivate/@i.Id" class="btn btn-warning m-1">Restrict Account</a>
-                                            }
-                                            else
-                                            {
-                                                <h6 class="bg-danger text-center">@i.IsValid</h6>
-                                                <a href="~/AdminInstitution/InstitutionActivate/@i.Id" class="btn btn-success m-1 ">Activate Account</a>
-                                                <a href="~/AdminInstitution/InstitutionDeactivate/@i.Id" class="btn btn-warning m-1">Restrict Account</a>
-                                            }
-                                        }
+                            <tr>
+                                <td>Id:</td>
+                                <td><input type="text" name="Id" value="@(Model.Id)" class="form-control" readonly /></td>
+                            </tr>
+                            <tr>
+                                <td>Name:</td>
+                                <td>
+                                    <input type="text" name="Name" value="@(Model.Name)" class="form-control" />
+                                    @Html.ValidationMessage("Name", new { @class = "text-danger" })
+                                </td>
+                            </tr>
+                            <tr>
+
+                                <td>Address</td>
+                                <td>
+                                    <input type="text" name="Address" value="@(Model.Address)" class="form-control" />
+                                    @Html.ValidationMessage("Address", new { @class = "text-danger" })
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>Email:</td>
+
+                                <td>
+                                    <input type="text" name="Email" value="@(Model.Email)" class="form-control" />
+                                    @Html.ValidationMessage("Email", new { @class = "text-danger" })
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>Phone:</td>
+
+                                <td>
+                                    <input type="text" name="Phone" value="@(Model.Phone)" class="form-control" />
+                                    @Html.ValidationMessage("Phone", new { @class = "text-danger" })
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>Password:</td>
+
+                                <td>
+                                    <input type="text" name="Password" value="@(Model.Password)" class="form-control" />
+                                    @Html.ValidationMessage("Password", new { @class = "text-danger" })
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>Website:</td>
+
+                                <td>
+                                    <input type="text" name="WebsiteLink" value="@(Model.WebsiteLink)" class="form-control" />
+                                    @Html.ValidationMessage("WebsiteLink", new { @class = "text-danger" })
+                                </td>
+                            </tr>
+                            <tr>
+                                <td></td>
+                                <td><input type="submit" class="btn btn-success" /></td>
+                            </tr>
 
 
 
-                                        <br />
 
-                                    </td>
-
-
-                                    <td>
-                                        <a href="~/AdminInstitution/InstitutionUpdate/@i.Id" class="btn btn-primary m-1 ps-1 pe-1">Update</a>
-                                        <a href="~/AdminInstitution/InstitutionDelete/@i.Id" class="btn btn-danger  m-1  ps-1 pe-1">Delete</a>
-                                        <a href="~/AdminInstitution/SingleInstitutionList/@i.Id" class="btn btn-primary  m-1  ps-1 pe-1">Details</a>
-
-                                    </td>
-
-
-                                </tr>
-                            }
 
                         </tbody>
 
-
+                        </form>
 
 
                     </table>
