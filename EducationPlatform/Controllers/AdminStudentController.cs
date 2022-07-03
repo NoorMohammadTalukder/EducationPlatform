@@ -33,28 +33,34 @@ namespace EducationPlatform.Controllers
         public ActionResult StudentAdd(Student obj)
         {
             var db = new EducationPlatformEntities();
-            var student = new Student()
+            if (ModelState.IsValid)
             {
-                Name = obj.Name,
-                Address = obj.Address,
-                Email = obj.Email,
-                Phone = obj.Phone,
-                Password = obj.Password,
-                Gender = obj.Gender,
-                Institution = obj.Institution,
-                IsValid = "Yes",
-                Education=obj.Education,
+                var student = new Student()
+                {
+                    Name = obj.Name,
+                    Address = obj.Address,
+                    Email = obj.Email,
+                    Phone = obj.Phone,
+                    Password = obj.Password,
+                    Gender = obj.Gender,
+                    Institution = obj.Institution,
+                    IsValid = "Yes",
+                    Education = obj.Education,
 
 
-            };
-            db.Students.Add(student);
-            db.SaveChanges();
-            return RedirectToAction("Index", "Admin"); //---action name, controller name
+                };
+                db.Students.Add(student);
+                db.SaveChanges();
+                return RedirectToAction("Index", "Admin"); //---action name, controller name
+            }
+            return View(obj);
+                
         }
 
         public ActionResult StudentDelete(int id)
         {
             var db = new EducationPlatformEntities();
+
             var student = (from i in db.Students
                           where i.Id == id
                           select i).FirstOrDefault();
@@ -76,49 +82,54 @@ namespace EducationPlatform.Controllers
         public ActionResult StudentUpdate(Student obj)
         {
             var db = new EducationPlatformEntities();
-            var student = (from i in db.Students
-                          where i.Id == obj.Id
-                          select i).FirstOrDefault();
-            //db.Entry(institution).CurrentValues.SetValues(obj);
+            if (ModelState.IsValid)
+            {
+                var student = (from i in db.Students
+                               where i.Id == obj.Id
+                               select i).FirstOrDefault();
+                //db.Entry(institution).CurrentValues.SetValues(obj);
 
-            student.Name = obj.Name;
-            student.Address = obj.Address;
-            student.Email = obj.Email;
-            student.Phone = obj.Phone;
-            student.Password = obj.Password;
-            student.Gender = obj.Gender;
-            student.Institution = obj.Institution;
-            student.Education = obj.Education;
+                student.Name = obj.Name;
+                student.Address = obj.Address;
+                student.Email = obj.Email;
+                student.Phone = obj.Phone;
+                student.Password = obj.Password;
+                student.Gender = obj.Gender;
+                student.Institution = obj.Institution;
+                student.Education = obj.Education;
 
-            db.SaveChanges();
+                db.SaveChanges();
 
-            //-------mail work----------------
+                //-------mail work----------------
 
-            MailMessage mail = new MailMessage();
-            mail.To.Add(obj.Email);
-            mail.From = new MailAddress("19-40649-1@student.aiub.edu");
-            mail.Subject = "Your Profile has updated by Admin of ABC Education";
-            string Body = "Hello sir <br/>" +
-                           "Your profile has been updated by our admin panel <br/>"+
-                           "Your new username or mail:"+obj.Email+"<br/>"+
-                           "Your new password:"+obj.Password + "<br/>" +
-                           "Please login to check the update" + "<br/>" +
-                           "<br/>"+
-                           "<b>Best Regards</b><br/>"+
-                           "Admin Panel <br/>"+
-                           "ABC Education";
-                            
-            mail.Body = Body;
-            mail.IsBodyHtml = true;
-            SmtpClient smtp = new SmtpClient();
-            smtp.Host = "smtp-mail.outlook.com";
-            smtp.Port = 587;
-            smtp.UseDefaultCredentials = false;
-            smtp.Credentials = new System.Net.NetworkCredential("19-40649-1@student.aiub.edu", "*noor*jaja*9027*"); // Enter seders User name and password  
-            smtp.EnableSsl = true;
-            smtp.Send(mail);
+                MailMessage mail = new MailMessage();
+                mail.To.Add(obj.Email);
+                mail.From = new MailAddress("19-40649-1@student.aiub.edu");
+                mail.Subject = "Your Profile has updated by Admin of ABC Education";
+                string Body = "Hello sir <br/>" +
+                               "Your profile has been updated by our admin panel <br/>" +
+                               "Your new username or mail:" + obj.Email + "<br/>" +
+                               "Your new password:" + obj.Password + "<br/>" +
+                               "Please login to check the update" + "<br/>" +
+                               "<br/>" +
+                               "<b>Best Regards</b><br/>" +
+                               "Admin Panel <br/>" +
+                               "ABC Education";
 
-            return RedirectToAction("StudentList");
+                mail.Body = Body;
+                mail.IsBodyHtml = true;
+                SmtpClient smtp = new SmtpClient();
+                smtp.Host = "smtp-mail.outlook.com";
+                smtp.Port = 587;
+                smtp.UseDefaultCredentials = false;
+                smtp.Credentials = new System.Net.NetworkCredential("19-40649-1@student.aiub.edu", "*noor*jaja*9027*"); // Enter seders User name and password  
+                smtp.EnableSsl = true;
+                smtp.Send(mail);
+
+                return RedirectToAction("StudentList");
+            }
+            return View(obj);
+                
         }
 
         public ActionResult StudentActivate(int id)
