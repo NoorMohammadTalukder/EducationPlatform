@@ -11,7 +11,7 @@ namespace EducationPlatform.Auth
         
         protected override bool AuthorizeCore(HttpContextBase httpContext)
         {
-            if (httpContext.Session["Id"] != null)
+            if (httpContext.Session["AdminId"] != null)
             {
                 return true;
             }

@@ -69,7 +69,7 @@
           <Property Name="MentorId" Type="int" />
           <Property Name="StudentId" Type="int" />
           <Property Name="CourseId" Type="int" />
-          <Property Name="MeetLink" Type="varchar" MaxLength="50" />
+          <Property Name="MeetLink" Type="varchar(max)" />
           <Property Name="Details" Type="varchar" MaxLength="50" />
           <Property Name="Date" Type="date" />
         </EntityType>
@@ -112,6 +112,13 @@
           <Property Name="WebsiteLink" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="IsValid" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="Photo" Type="image" />
+        </EntityType>
+        <EntityType Name="MentorPasswordChanges">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Email" Type="varchar(max)" />
         </EntityType>
         <EntityType Name="Mentors">
           <Key>
@@ -229,30 +236,6 @@
           <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Email" Type="varchar" MaxLength="50" />
         </EntityType>
-        <Association Name="FK_Carts_Courses">
-          <End Role="Courses" Type="Self.Courses" Multiplicity="0..1" />
-          <End Role="Carts" Type="Self.Carts" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Courses">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="Carts">
-              <PropertyRef Name="CourseId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Carts_Students">
-          <End Role="Students" Type="Self.Students" Multiplicity="0..1" />
-          <End Role="Carts" Type="Self.Carts" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Students">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="Carts">
-              <PropertyRef Name="StudentId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_Counselings_Mentors1">
           <End Role="Mentors" Type="Self.Mentors" Multiplicity="0..1" />
           <End Role="Counselings" Type="Self.Counselings" Multiplicity="*" />
@@ -383,6 +366,7 @@
           <EntitySet Name="CourseDetails" EntityType="Self.CourseDetails" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Courses" EntityType="Self.Courses" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Institutions" EntityType="Self.Institutions" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="MentorPasswordChanges" EntityType="Self.MentorPasswordChanges" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Mentors" EntityType="Self.Mentors" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Notices" EntityType="Self.Notices" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="PasswordChanges" EntityType="Self.PasswordChanges" Schema="dbo" store:Type="Tables" />
@@ -393,14 +377,6 @@
           <EntitySet Name="Transactions" EntityType="Self.Transactions" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ValidStudents" EntityType="Self.ValidStudents" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="VarsityPasswordChanges" EntityType="Self.VarsityPasswordChanges" Schema="dbo" store:Type="Tables" />
-          <AssociationSet Name="FK_Carts_Courses" Association="Self.FK_Carts_Courses">
-            <End Role="Courses" EntitySet="Courses" />
-            <End Role="Carts" EntitySet="Carts" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Carts_Students" Association="Self.FK_Carts_Students">
-            <End Role="Students" EntitySet="Students" />
-            <End Role="Carts" EntitySet="Carts" />
-          </AssociationSet>
           <AssociationSet Name="FK_Counselings_Mentors1" Association="Self.FK_Counselings_Mentors1">
             <End Role="Mentors" EntitySet="Mentors" />
             <End Role="Counselings" EntitySet="Counselings" />
@@ -512,7 +488,7 @@
           <Property Name="MentorId" Type="Int32" />
           <Property Name="StudentId" Type="Int32" />
           <Property Name="CourseId" Type="Int32" />
-          <Property Name="MeetLink" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="MeetLink" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
           <Property Name="Details" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="Date" Type="DateTime" Precision="0" />
           <NavigationProperty Name="Mentor" Relationship="Self.FK_Counselings_Mentors1" FromRole="Counselings" ToRole="Mentors" />
@@ -906,7 +882,15 @@
             <End Role="Students" EntitySet="Students" />
             <End Role="Transactions" EntitySet="Transactions" />
           </AssociationSet>
+          <EntitySet Name="MentorPasswordChanges" EntityType="EducationPlatformModel.MentorPasswordChanx" />
         </EntityContainer>
+        <EntityType Name="MentorPasswordChanx">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Email" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+        </EntityType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -1153,6 +1137,14 @@
               <MappingFragment StoreEntitySet="VarsityPasswordChanges">
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="Email" ColumnName="Email" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="MentorPasswordChanges">
+            <EntityTypeMapping TypeName="EducationPlatformModel.MentorPasswordChanx">
+              <MappingFragment StoreEntitySet="MentorPasswordChanges">
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

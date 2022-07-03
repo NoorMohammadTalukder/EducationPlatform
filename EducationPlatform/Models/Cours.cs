@@ -11,7 +11,8 @@ namespace EducationPlatform.Models
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.ComponentModel.DataAnnotations;
+
     public partial class Cours
     {
         public Cours()
@@ -24,13 +25,21 @@ namespace EducationPlatform.Models
         }
     
         public int Id { get; set; }
+
+        [Required(ErrorMessage = "Please provide Name")]
         public string Name { get; set; }
+        [Required(ErrorMessage = "Please provide Details")]
         public string Details { get; set; }
+        [Required(ErrorMessage = "Please provide Price")]
         public Nullable<double> Price { get; set; }
+        [Required(ErrorMessage = "Please provide Duration")]
         public string Duration { get; set; }
         public Nullable<System.DateTime> Date { get; set; }
+        [Required(ErrorMessage = "Please provide Photo URL")]
         public string Photo { get; set; }
+        [Required(ErrorMessage = "Please provide Institution Id")]
         public Nullable<int> InstitutionId { get; set; }
+        [Required(ErrorMessage = "Please provide Mentor Id")]
         public Nullable<int> MentorId { get; set; }
     
         public virtual ICollection<Cart> Carts { get; set; }

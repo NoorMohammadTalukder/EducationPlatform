@@ -242,5 +242,7 @@ namespace EducationPlatform.Controllers
             return RedirectToAction("StudentCertificate");
 
         }
+
+
     }
 }

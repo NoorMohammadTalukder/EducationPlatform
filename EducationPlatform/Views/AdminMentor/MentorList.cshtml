@@ -85,6 +85,7 @@
                     <h5>Password Change Request</h5>
                     <a href="~/AdminStudent/StudentPasswordChangeRequest" class="btn  btn-outline-primary">Student</a>
                     <a href="~/AdminInstitution/InstitutionPasswordChangeRequest" class="btn  btn-outline-primary">Institution</a>
+                    <a href="~/AdminMentor/MentorPasswordChangeRequest" class="btn  btn-outline-primary">Mentor</a>
                     <h5>Revenue</h5>
                     <a href="~/AdminRevenue/Revenue" class="btn  btn-outline-primary">Revenue Details</a>
                     <h5>Certificate Request</h5>
@@ -131,14 +132,17 @@
                                     <td>
                                        
                                                 <h6 class=" text-center">@i.IsValid</h6>
-                                                <a href="~/AdminMentor/MentorActivate/@i.Id" class="btn btn-success m-1">Activate Account</a>
-                                               <a href="~/AdminMentor/MentorDeactivate/@i.Id" class="btn btn-warning m-1">Restrict Account</a>
+                                                <a href="~/AdminMentor/MentorActivate/@i.Id" class="btn btn-success m-1 ">Activate </a>
+                                               <a href="~/AdminMentor/MentorDeactivate/@i.Id" class="btn btn-warning m-1">Restrict </a>
                                             
                                            
 
                                     </td>
-                                    <td class=""><a href="~/AdminMentor/MentorUpdate/@i.Id" class="btn btn-primary">Update</a>
-                                                           <a href="~/AdminMentor/MentorDelete/@i.Id" class="btn btn-danger m-1">Delete</a></td>
+                                    <td class="">
+                                        <a href="~/AdminMentor/MentorUpdate/@i.Id" class="btn btn-primary">Update</a>
+                                        <a href="~/AdminMentor/MentorDelete/@i.Id" class="btn btn-danger m-1">Delete</a>
+                                        <a href="~/AdminMentor/SingleMentorDetails/@i.Id" class="btn btn-success m-1">Details</a>
+                                    </td>
                                  
                                 </tr>
                             }

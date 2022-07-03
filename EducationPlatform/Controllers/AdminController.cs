@@ -55,7 +55,7 @@ namespace EducationPlatform.Controllers
                          select i).FirstOrDefault();
             if (admin != null)
             {
-                Session["Id"] = admin.Id;
+                Session["AdminId"] = admin.Id;
                 return RedirectToAction("Index");
                
                 
@@ -69,7 +69,7 @@ namespace EducationPlatform.Controllers
 
         public ActionResult AdminProfile()
         {
-            var adminId =Int32.Parse(Session["Id"].ToString());
+            var adminId =Int32.Parse(Session["AdminId"].ToString());
 
             var db = new EducationPlatformEntities();
             var admin = (from i in db.Admins where i.Id == adminId select i).FirstOrDefault();
@@ -81,7 +81,7 @@ namespace EducationPlatform.Controllers
         [HttpGet]
         public ActionResult AdminUpdate()
         {
-            var adminId = Int32.Parse(Session["Id"].ToString());
+            var adminId = Int32.Parse(Session["AdminId"].ToString());
 
             var db = new EducationPlatformEntities();
             var admin = (from i in db.Admins where i.Id == adminId select i).FirstOrDefault();
@@ -92,24 +92,29 @@ namespace EducationPlatform.Controllers
         [HttpPost]
         public ActionResult AdminUpdate(Admin obj)
         {
-            var adminId = Int32.Parse(Session["Id"].ToString());
+            var adminId = Int32.Parse(Session["AdminId"].ToString());
             var db = new EducationPlatformEntities();
-            var admin = (from i in db.Admins
-                               where i.Id == adminId
-                         select i).FirstOrDefault();
-            //db.Entry(institution).CurrentValues.SetValues(obj);
-            admin.Name = obj.Name;
-            admin.Address = obj.Address;
-            admin.Email = obj.Email;
-            admin.Phone = obj.Phone;
-            admin.Password = obj.Password;
-           
+            if (ModelState.IsValid)
+            {
+                var admin = (from i in db.Admins
+                             where i.Id == adminId
+                             select i).FirstOrDefault();
+                //db.Entry(institution).CurrentValues.SetValues(obj);
+                admin.Name = obj.Name;
+                admin.Address = obj.Address;
+                admin.Email = obj.Email;
+                admin.Phone = obj.Phone;
+                admin.Password = obj.Password;
 
 
-            db.SaveChanges();
+
+                db.SaveChanges();
 
 
-            return RedirectToAction("Index");
+                return RedirectToAction("Index");
+            }
+            return View(obj);
+               
         }
 
         public ActionResult AdminLogout()

@@ -154,15 +154,31 @@ namespace EducationPlatform.Controllers
         public ActionResult MentorSearchResult()
         {
 
-            var name = Request["searching"];
+            var search = Request["searching"];
             var db = new EducationPlatformEntities();
 
             var searchResult = (from i in db.Mentors
-                                where i.Name.Contains(name)
+                                where i.Name.Contains(search) || i.Email.Contains(search)
 
                                 select i).ToList();
             // return RedirectToAction()
             return View(searchResult);
+        }
+
+        public ActionResult SingleMentorDetails(int id)
+        {
+            var db = new EducationPlatformEntities();
+            var mentor = (from i in db.Mentors where i.Id == id select i).FirstOrDefault();
+            return View(mentor);
+            
+        }
+
+        public ActionResult MentorPasswordChangeRequest()
+        {
+            var db = new EducationPlatformEntities();
+
+            var RequesList = db.MentorPasswordChanges.ToList();
+            return View(RequesList);
         }
     }
 }

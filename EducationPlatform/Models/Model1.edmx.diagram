@@ -36,6 +36,7 @@
         <AssociationConnector Association="EducationPlatformModel.FK_Transactions_Institutions" ManuallyRouted="false" />
         <AssociationConnector Association="EducationPlatformModel.FK_Ratings_Students" ManuallyRouted="false" />
         <AssociationConnector Association="EducationPlatformModel.FK_Transactions_Students" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="EducationPlatformModel.MentorPasswordChanx" Width="1.5" PointX="0.75" PointY="0.75" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

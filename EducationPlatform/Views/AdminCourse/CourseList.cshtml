@@ -1,6 +1,6 @@
 ﻿
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "CourseList";
 }
 
 <!DOCTYPE html>
@@ -67,6 +67,7 @@
                     <h5>Password Change Request</h5>
                     <a href="~/AdminStudent/StudentPasswordChangeRequest" class="btn  btn-outline-primary">Student</a>
                     <a href="~/AdminInstitution/InstitutionPasswordChangeRequest" class="btn  btn-outline-primary">Institution</a>
+                    <a href="~/AdminMentor/MentorPasswordChangeRequest" class="btn  btn-outline-primary">Mentor</a>
                     <h5>Revenue</h5>
                     <a href="~/AdminRevenue/Revenue" class="btn  btn-outline-primary">Revenue Details</a>
                     <h5>Certificate Request</h5>
@@ -102,10 +103,11 @@
                                     <td>@i.Price</td>
                                     <td>@i.Duration</td>
                                     <td>
-                                   
+
 
 
                                         <a href="~/AdminCourse/SingleCourseList/@i.Id" class="btn btn-success">Details</a>
+                                        <a href="~/AdminCourse/CourseUpdate/@i.Id" class="btn btn-primary">Update</a>
 
 
                                     </td>

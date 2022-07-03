@@ -136,6 +136,7 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Auth\AdminLogged.cs" />
+    <Compile Include="Auth\InstitutionLogged.cs" />
     <Compile Include="Auth\MentorLoginAuth.cs" />
     <Compile Include="Controllers\AdminController.cs" />
     <Compile Include="Controllers\AdminCourseController.cs" />
@@ -144,6 +145,9 @@
     <Compile Include="Controllers\AdminRevenueController.cs" />
     <Compile Include="Controllers\AdminStudentController.cs" />
     <Compile Include="Controllers\AdminTransactionController.cs" />
+    <Compile Include="Controllers\A_InstitutionController.cs" />
+    <Compile Include="Controllers\A_MentorController.cs" />
+    <Compile Include="Controllers\A_StudentController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\M_MentorController.cs" />
     <Compile Include="Controllers\M_StudentController.cs" />
@@ -179,6 +183,9 @@
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Mentor.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\MentorPasswordChanx.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Model1.Context.cs">
@@ -320,6 +327,12 @@
     <Content Include="Views\S_Student\SeeAssignment.cshtml" />
     <Content Include="Views\S_Student\UploadAssignment.cshtml" />
     <Content Include="Views\S_Student\VideoConference.cshtml" />
+    <Content Include="Views\AdminCourse\CourseUpdate.cshtml" />
+    <Content Include="Views\AdminMentor\SingleMentorDetails.cshtml" />
+    <Content Include="Views\AdminMentor\MentorPasswordChangeRequest.cshtml" />
+    <Content Include="Views\A_Institution\InstitutionUpdate.cshtml" />
+    <Content Include="Views\A_Mentor\MentorAdd.cshtml" />
+    <Content Include="Views\A_Student\InstitutionStudentList.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

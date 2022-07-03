@@ -67,6 +67,7 @@
                     <h5>Password Change Request</h5>
                     <a href="~/AdminStudent/StudentPasswordChangeRequest" class="btn  btn-outline-primary">Student</a>
                     <a href="~/AdminInstitution/InstitutionPasswordChangeRequest" class="btn  btn-outline-primary">Institution</a>
+                    <a href="~/AdminMentor/MentorPasswordChangeRequest" class="btn  btn-outline-primary">Mentor</a>
                     <h5>Revenue</h5>
                     <a href="~/AdminRevenue/Revenue" class="btn  btn-outline-primary">Revenue Details</a>
                     <h5>Certificate Request</h5>
@@ -86,8 +87,8 @@
                             <tr>
                                 <td>Course Name:</td>
                                 <td>
-                                    <input type="text" name="Name" value="" class="form-control" />
-                                    <!--@Html.ValidationMessage("Name") -->
+                                    <input type="text" name="Name" value="@(Model != null ? Model.Name : "")" class="form-control" />
+                                    @Html.ValidationMessage("Name", new { @class = "text-danger" })<br>
                                 </td>
                             </tr>
                             <tr>
@@ -95,26 +96,57 @@
                                 <td>Details</td>
 
                                 <td>
-                                    <textarea input type="text" name="Details" value="" class="form-control" rows="4" cols="100">
+                                    <textarea input type="text" name="Details"  value="@(Model != null ? Model.Details : "")" class="form-control" rows="4" cols="100">
 
-                    </textarea>
+                                    </textarea>
+                                    @Html.ValidationMessage("Details", new { @class = "text-danger" })<br>
                                 </td>
                             </tr>
                             <tr>
                                 <td>Price:</td>
 
-                                <td><input type="text" name="Price" value="" class="form-control" /></td>
+                                <td>
+                                    <input type="text" name="Price"  value="@(Model != null ? Model.Price : "")" class="form-control" />
+                                    @Html.ValidationMessage("Price", new { @class = "text-danger" })
+                                </td>
+                               
+                                <br>
                             </tr>
                             <tr>
                                 <td>Duration:</td>
 
-                                <td><input type="text" name="Duration" value="" class="form-control" /></td>
+                                <td>
+                                    <input type="text" name="Duration"  value="@(Model != null ? Model.Duration : "")" class="form-control" />
+                                    @Html.ValidationMessage("Duration", new { @class = "text-danger" })
+                                </td>
+
                             </tr>
                             <tr>
 
-                                <td>Photo:</td>
+                                <td>Photo URL:</td>
 
-                                <td><input type="text" name="Photo" value="" class="form-control" /></td>
+                                <td>
+                                    <input type="text" name="Photo" value="@(Model != null ? Model.Photo : "")" class="form-control" />
+                                    @Html.ValidationMessage("Photo", new { @class = "text-danger" })
+                                </td>
+                            </tr>
+                            <tr>
+
+                                <td>Institution Id:</td>
+
+                                <td>
+                                    <input type="text" name="InstitutionId"  value="@(Model != null ? Model.InstitutionId : "")" class="form-control" />
+                                    @Html.ValidationMessage("InstitutionId", new { @class = "text-danger" })
+                                </td>
+                            </tr>
+                            <tr>
+
+                                <td>Mentor Id:</td>
+
+                                <td>
+                                    <input type="text" name="MentorId"  value="@(Model != null ? Model.MentorId : "")" class="form-control" />
+                                    @Html.ValidationMessage("MentorId", new { @class = "text-danger" })
+                                </td>
                             </tr>
                             <tr>
                                 <td></td>

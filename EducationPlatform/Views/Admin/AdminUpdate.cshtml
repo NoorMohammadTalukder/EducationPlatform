@@ -67,6 +67,7 @@
                     <h5>Password Change Request</h5>
                     <a href="~/AdminStudent/StudentPasswordChangeRequest" class="btn  btn-outline-primary">Student</a>
                     <a href="~/AdminInstitution/InstitutionPasswordChangeRequest" class="btn  btn-outline-primary">Institution</a>
+                    <a href="~/AdminMentor/MentorPasswordChangeRequest" class="btn  btn-outline-primary">Mentor</a>
                     <h5>Revenue</h5>
                     <a href="~/AdminRevenue/Revenue" class="btn  btn-outline-primary">Revenue Details</a>
                     <h5>Certificate Request</h5>
@@ -83,35 +84,46 @@
                         <tbody>
 
                             <tr>
-                                <td>Id:</td>
-                                <td>@Model.Id</td>
+                                
                             </tr>
                             <tr>
                                 <td>Name:</td>
                                 <td>
                                     <input type="text" name="Name" value="@(Model.Name)" class="form-control" />
-                                    <!--@Html.ValidationMessage("Name") -->
+                                    <span> @Html.ValidationMessage("Name", new { @class = "text-danger" })</span>
                                 </td>
                             </tr>
                             <tr>
 
                                 <td>Address</td>
-                                <td><input type="text" name="Address" value="@(Model.Address)" class="form-control" /></td>
+                                <td>
+                                    <input type="text" name="Address" value="@(Model.Address)" class="form-control" />
+                                    <span>@Html.ValidationMessage("Address", new { @class = "text-danger" })</span>
+                                </td>
                             </tr>
                             <tr>
                                 <td>Email:</td>
 
-                                <td><input type="text" name="Email" value="@(Model.Email)" class="form-control" /></td>
+                                <td>
+                                    <input type="text" name="Email" value="@(Model.Email)" class="form-control" />
+                                    <span>@Html.ValidationMessage("Email", new { @class = "text-danger" })</span>
+                                </td>
                             </tr>
                             <tr>
                                 <td>Phone:</td>
 
-                                <td><input type="text" name="Phone" value="@(Model.Phone)" class="form-control" /></td>
+                                <td>
+                                    <input type="text" name="Phone" value="@(Model.Phone)" class="form-control" />
+                                    <span>@Html.ValidationMessage("Phone", new { @class = "text-danger" })</span>
+                                </td>
                             </tr>
                             <tr>
                                 <td>Password:</td>
 
-                                <td><input type="text" name="Password" value="@(Model.Password)" class="form-control" /></td>
+                                <td>
+                                    <input type="text" name="Password" value="@(Model.Password)" class="form-control" />
+                                    <span>@Html.ValidationMessage("Password", new { @class = "text-danger" })</span>
+                                </td>
                             </tr>
 
                             <tr>
