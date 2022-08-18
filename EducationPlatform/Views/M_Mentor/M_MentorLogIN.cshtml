@@ -1,5 +1,4 @@
-﻿
-@{
+﻿@{
     ViewBag.Title = "M_MentorLogIN";
 }
 <html>
@@ -18,10 +17,10 @@
         <div class="col-lg-4 shadow p-3 mb-5 bg-body rounded">
             <form action="" method="post">
 
-                <input type="email" name="Email" value="@(Model !=null ? Model.Email:"")" class="form-control text-center fw-bolder" placeholder="EMAIL" />
+                <input type="email" name="Email" value="" class="form-control text-center fw-bolder" placeholder="EMAIL" />
 
 
-                <input type="password" name="Password" value="@(Model !=null ? Model.Password:"")" class="form-control text-center fw-bolder" placeholder="PASSWORD" />
+                <input type="password" name="Password" value="" class="form-control text-center fw-bolder" placeholder="PASSWORD" />
                 <br />
                 <button type="submit" class="btn btn-success fw-bolder">LOGIN</button>
 

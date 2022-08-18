@@ -11,6 +11,9 @@
     <title></title>
 </head>
 <body>
+    <a class="btn btn-success  text-uppercase fw-bolder" href="~/M_Mentor/M_MentorInformation" role="button">BACK</a>
+
+    <a class="btn btn-danger  text-uppercase fw-bolder" href="~/M_Mentor/M_MentorLogOut" role="button">LOGOUT</a>
     <center>
         <h2 class="fw-bolder text-uppercase">AllStudentResults</h2>
 
@@ -33,22 +36,22 @@
 
                 @foreach (var p in Model)
                 {
-                    <tr class="text-center  fw-bolder">
+                <tr class="text-center  fw-bolder">
 
-                        <td>@p.StudentId</td>
-                        <td>@p.AssignmentId</td>
-                        <th scope="row">@p.Mark</th>
-                        <th scope="row">@p.CourseName</th>
-                        <th>@p.BackResult</th>
-                        <th>
-                            <a class="btn btn-success  text-uppercase fw-bolder" href="~/M_Mentor/M_MentorReturnResult/@p.Id" role="button">RETURN RESULT</a>
-                            <a class="btn btn-warning  text-uppercase fw-bolder" href="~/M_Mentor/M_MentorNotReturnResult/@p.Id" role="button">NOT RETURN RESULT</a>
+                    <td>@p.StudentId</td>
+                    <td>@p.AssignmentId</td>
+                    <th scope="row">@p.Mark</th>
+                    <th scope="row">@p.CourseName</th>
+                    <th>@p.BackResult</th>
+                    <th>
+                        <a class="btn btn-success  text-uppercase fw-bolder" href="~/M_Mentor/M_MentorReturnResult/@p.Id" role="button">RETURN RESULT</a>
+                        <a class="btn btn-warning  text-uppercase fw-bolder" href="~/M_Mentor/M_MentorNotReturnResult/@p.Id" role="button">NOT RETURN RESULT</a>
 
-                        </th>
+                    </th>
 
-                    </tr>
+                </tr>
                 }
-</table>
+        </table>
     </center>
 </body>
 </html>

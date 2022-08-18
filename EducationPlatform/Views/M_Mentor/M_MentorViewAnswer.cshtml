@@ -11,6 +11,9 @@
     <title></title>
 </head>
 <body>
+    <a class="btn btn-success  text-uppercase fw-bolder" href="~/M_Mentor/M_MentorInformation" role="button">BACK</a>
+
+    <a class="btn btn-danger  text-uppercase fw-bolder" href="~/M_Mentor/M_MentorLogOut" role="button">LOGOUT</a>
     <center> <h2 class="fw-bolder text-uppercase">ViewAnswer</h2></center>
     <br />
     <br />
@@ -60,8 +63,8 @@
                             </td>
 
                             <td>
-                                <input type="text" name="Mark" value="@(Model !=null ? Model.Mark:"")" class="form-control text-center fw-bolder" />
-                                @Html.ValidationMessage("Mark")
+                                <input type="text" name="Mark" value="" class="form-control text-center fw-bolder" />
+
                             </td>
                         </tr>
                         <tr>
@@ -70,8 +73,8 @@
                             </td>
 
                             <td>
-                                <input type="text" name="Comment" value="@(Model !=null ? Model.Comment:"")" class="form-control text-center fw-bolder" />
-                                @Html.ValidationMessage("Comment", new { @class = "text-danger" })
+                                <input type="text" name="Comment" value="" class="form-control text-center fw-bolder" />
+
                             </td>
                         </tr>
                         <tr>
@@ -80,11 +83,11 @@
                             </td>
 
                             <td>
-                                <input type="date" name="Date" value="@(Model !=null ? Model.Date:"")" class="form-control text-center fw-bolder" />
-                                @Html.ValidationMessage("Date", new { @class = "text-danger" })
+                                <input type="date" name="Date" value="" class="form-control text-center fw-bolder" />
+
                             </td>
                         </tr>
-                       
+
 
                         <tr>
                             <td>

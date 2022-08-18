@@ -21,9 +21,9 @@ namespace EducationPlatform.Models
         public Nullable<int> ApplierId { get; set; }
         public Nullable<int> CourseId { get; set; }
         public string Status { get; set; }
-        [Required(ErrorMessage = "Please provide Comments")]
+      
         public string Comments { get; set; }
-        [Required(ErrorMessage = "Please provide Date")]
+       
         public Nullable<System.DateTime> Date { get; set; }
     }
 }

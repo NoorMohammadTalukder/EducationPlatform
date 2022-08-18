@@ -351,7 +351,7 @@ namespace EducationPlatform.Controllers
             var db = new EducationPlatformEntities();
             var results = (from i in db.Results where i.Id == id select i).FirstOrDefault();
 
-            results.BackResult = null;
+            results.BackResult = "No";
 
             db.SaveChanges();
             return RedirectToAction("Index");

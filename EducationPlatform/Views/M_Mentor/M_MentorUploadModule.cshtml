@@ -15,6 +15,9 @@
     <title></title>
 </head>
 <body>
+    <a class="btn btn-success  text-uppercase fw-bolder" href="~/M_Mentor/M_MentorInformation" role="button">BACK</a>
+
+    <a class="btn btn-danger  text-uppercase fw-bolder" href="~/M_Mentor/M_MentorLogOut" role="button">LOGOUT</a>
     <center>
         <h2 class="text-uppercase fw-bolder">UPLOAD MODULE</h2>
         <form action="" method="post">
@@ -27,17 +30,17 @@
                     <tr>
                         <td>  <h3 class="text-uppercase">Material</h3></td>
                         <td>
-                            <input type="url" name="Material" value="@(Model !=null ? Model.Material:"")" class="form-control text-center fw-bolder" />
+                            <input type="url" name="Material" value="@(Model !=null ? Model.Material:" ")" class="form-control text-center fw-bolder" />
                             @Html.ValidationMessage("Material")
                         </td>
-                   
+
                     </tr>
                     <tr>
                         <td>
                             <h3 class="text-uppercase">MODULE</h3>
                         </td>
                         <td>
-                            <input type="text" name="Module" value="@(Model !=null ? Model.Module:"")" class="form-control text-center fw-bolder" />
+                            <input type="text" name="Module" value="@(Model !=null ? Model.Module:" ")" class="form-control text-center fw-bolder" />
                             @Html.ValidationMessage("Module")
                         </td>
                     </tr>
@@ -47,7 +50,7 @@
                             <h3 class="text-uppercase">Description</h3>
                         </td>
                         <td>
-                            <input type="text" name="Description" value="@(Model !=null ? Model.Description:"")" class="form-control text-center fw-bolder" />
+                            <input type="text" name="Description" value="@(Model !=null ? Model.Description:" ")" class="form-control text-center fw-bolder" />
                             @Html.ValidationMessage("Description", new { @class = "text-danger" })
                         </td>
                     </tr>
@@ -58,7 +61,7 @@
                             <h3 class="text-uppercase">Date</h3>
                         </td>
                         <td>
-                            <input type="date" name="Date" value="@(Model !=null ? Model.Date:"")" class="form-control text-center fw-bolder" />
+                            <input type="date" name="Date" value="@(Model !=null ? Model.Date:" ")" class="form-control text-center fw-bolder" />
                             @Html.ValidationMessage("Date", new { @class = "text-danger" })
                         </td>
                     </tr>

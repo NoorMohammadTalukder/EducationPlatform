@@ -85,3 +85,4 @@ D:\.net practice\EducationPlatform\EducationPlatform\bin\Syncfusion.Pdf.Base.dll
 D:\.net practice\EducationPlatform\EducationPlatform\bin\Syncfusion.Compression.Base.xml
 D:\.net practice\EducationPlatform\EducationPlatform\bin\Syncfusion.Licensing.xml
 D:\.net practice\EducationPlatform\EducationPlatform\bin\Syncfusion.Pdf.Base.xml
+D:\.net practice\EducationPlatform\EducationPlatform\bin\WebDriver.dll

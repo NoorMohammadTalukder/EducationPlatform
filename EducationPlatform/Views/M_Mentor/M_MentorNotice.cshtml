@@ -11,13 +11,16 @@
     <title></title>
 </head>
 <body>
+    <a class="btn btn-success  text-uppercase fw-bolder" href="~/M_Mentor/M_MentorInformation" role="button">BACK</a>
+
+    <a class="btn btn-danger  text-uppercase fw-bolder" href="~/M_Mentor/M_MentorLogOut" role="button">LOGOUT</a>
     <center>
         <h2 class=" text-uppercase fw-light-bolder">Notice</h2>
         <div class="col-lg-4 shadow p-3 mb-5 bg-info text-white rounded">
 
             <form action="" method="post">
 
-                <input type="text" name="Details" value="@(Model !=null ? Model.Name:"Details")" class="form-control text-dark text-uppercase text-center fw-bolder" placeholder="DETAILS" />
+                <input type="text" name="Details" value="@(Model !=null ? Model.Details:"")" class="form-control text-dark text-uppercase text-center fw-bolder" placeholder="DETAILS" />
                 @Html.ValidationMessage("Details", new { @class = "text-danger" })
                 <br />
                 <input type="date" name="Date" value="@(Model !=null ? Model.Date:"")" class="form-control text-dark text-uppercase text-center fw-bolder" placeholder="DATE" />

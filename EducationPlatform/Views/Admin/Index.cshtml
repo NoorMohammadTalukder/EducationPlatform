@@ -27,8 +27,8 @@
 
                             <a class="btn btn-outline-primary m-1" href="~/Admin/Index" role="button">Index</a>
                             <a class="btn btn-outline-primary m-1" href="~/Admin/AdminProfile" role="button">Profile</a>
-                            <a class="btn btn-outline-primary m-1" href="~/Admin/AdminUpdate" role="button">Profile Update</a>
-                            <a class="btn btn-outline-danger m-1" href="~/Admin/AdminLogout" role="button">Logout</a>
+                            <a class="btn btn-outline-primary m-1" name="Update" href="~/Admin/AdminUpdate" role="button">Profile Update</a>
+                            <a class="btn btn-outline-danger m-1"  name="Logout" href="~/Admin/AdminLogout" role="button">Logout</a>
                             
                         </div>
                     </div>
@@ -44,6 +44,9 @@
 
                 <div class="d-grid gap-2 shadow-lg m-1 p-3">
 
+
+
+
                     <h5>Varsity</h5>
                     <a href="~/AdminInstitution/InstitutionList" class="btn btn-outline-primary">Varsity List</a>
                     <a href="~/AdminInstitution/InstitutionAdd" class="btn btn-outline-primary">Add Varsity</a>
@@ -55,19 +58,25 @@
                     <h5>Student</h5>
                     <a href="~/AdminStudent/StudentList" class="btn  btn-outline-primary">Student List</a>
                     <a href="~/AdminStudent/StudentAdd" class="btn  btn-outline-primary">Add Student</a>
+
                     <h5>Courses</h5>
                     <a href="~/AdminCourse/AddCourse" class="btn  btn-outline-primary">Add Course</a>
                     <a href="~/AdminCourse/CourseList" class="btn  btn-outline-primary">Course List</a>
+
+                    <h5>Password Change Request</h5>
+                    <a class="btn  btn-outline-primary" name="StudentPassword" href="~/AdminStudent/StudentPasswordChangeRequest" role="button">Student</a>
+                    <a href="~/AdminInstitution/InstitutionPasswordChangeRequest" class="btn  btn-outline-primary">Institution</a>
+                    <a href="~/AdminMentor/MentorPasswordChangeRequest" class="btn  btn-outline-primary">Mentor</a>
+                   
                     <h5>Transactions</h5>
                     <a href="~/AdminTransaction/TransactionHistory" class="btn  btn-outline-primary">All Transaction</a>
                     <h5>Search</h5>
                     <a href="~/AdminStudent/StudentSearch" class="btn  btn-outline-primary">Search Student</a>
                     <a href="~/AdminInstitution/InstitutionSearch" class="btn  btn-outline-primary">Search Institution</a>
                     <a href="~/AdminMentor/MentorSearch" class="btn  btn-outline-primary">Search Mentor</a>
-                    <h5>Password Change Request</h5>
-                    <a href="~/AdminStudent/StudentPasswordChangeRequest" class="btn  btn-outline-primary">Student</a>
-                    <a href="~/AdminInstitution/InstitutionPasswordChangeRequest" class="btn  btn-outline-primary">Institution</a>
-                    <a href="~/AdminMentor/MentorPasswordChangeRequest" class="btn  btn-outline-primary">Mentor</a>
+
+
+
                     <h5>Revenue</h5>
                     <a href="~/AdminRevenue/Revenue" class="btn  btn-outline-primary">Revenue Details</a>
                     <h5>Certificate Request</h5>

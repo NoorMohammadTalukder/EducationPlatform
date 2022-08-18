@@ -12,6 +12,9 @@
     <title></title>
 </head>
 <body>
+    <a class="btn btn-success  text-uppercase fw-bolder" href="~/M_Mentor/M_MentorInformation" role="button">BACK</a>
+
+    <a class="btn btn-danger  text-uppercase fw-bolder" href="~/M_Mentor/M_MentorLogOut" role="button">LOGOUT</a>
     <center>
         <h2 class="text-uppercase fw-bolder">Mentor Update</h2>
         <form action="" method="post">
@@ -30,7 +33,7 @@
                             <h3 class="text-uppercase">NAME</h3>
                         </td>
                         <td>
-                            <input type="text" name="Name" value="@(Model !=null ? Model.Name:"")" class="form-control text-center fw-bolder" />
+                            <input type="text" name="Name" value="@(Model !=null ? Model.Name:" ")" class="form-control text-center fw-bolder" />
                             @Html.ValidationMessage("Name", new { @class = "text-danger" })
                         </td>
                     </tr>
@@ -40,7 +43,7 @@
                             <h3 class="text-uppercase">Address</h3>
                         </td>
                         <td>
-                            <input type="text" name="Address" value="@(Model !=null ? Model.Address:"")" class="form-control text-center fw-bolder" />
+                            <input type="text" name="Address" value="@(Model !=null ? Model.Address:" ")" class="form-control text-center fw-bolder" />
                             @Html.ValidationMessage("Address", new { @class = "text-danger" })
                         </td>
                     </tr>
@@ -49,7 +52,7 @@
                     <tr>
                         <td>   <h3 class="text-uppercase">Email</h3></td>
                         <td>
-                            <input type="email" name="Email" value="@(Model !=null ? Model.Email:"")" class="form-control text-center fw-bolder" />
+                            <input type="email" name="Email" value="@(Model !=null ? Model.Email:" ")" class="form-control text-center fw-bolder" />
                             @Html.ValidationMessage("Email", new { @class = "text-danger" })
                         </td>
                     </tr>
@@ -59,7 +62,7 @@
                             <h3 class="text-uppercase">Phone</h3>
                         </td>
                         <td>
-                            <input type="text" name="Phone" value="@(Model !=null ? Model.Phone:"")" class="form-control text-center fw-bolder" />
+                            <input type="text" name="Phone" value="@(Model !=null ? Model.Phone:" ")" class="form-control text-center fw-bolder" />
                             @Html.ValidationMessage("Phone", new { @class = "text-danger" })
                         </td>
                     </tr>
@@ -68,17 +71,17 @@
                             <h3 class="text-uppercase">Password</h3>
                         </td>
                         <td>
-                            <input type="password" name="Password" value="@(Model !=null ? Model.Password :"")" class="form-control text-center fw-bolder" />
+                            <input type="password" name="Password" value="@(Model !=null ? Model.Password :" ")" class="form-control text-center fw-bolder" />
                             @Html.ValidationMessage("Password", new { @class = "text-danger" })
                         </td>
                     </tr>
-                   
+
                     <tr>
                         <td>
                             <h3 class="text-uppercase">Gender</h3>
                         </td>
                         <td>
-                            <input type="text" name="Gender" value="@(Model !=null ? Model.Gender:"")" class="form-control text-center fw-bolder" />
+                            <input type="text" name="Gender" value="@(Model !=null ? Model.Gender:" ")" class="form-control text-center fw-bolder" />
                             @Html.ValidationMessage("Gender", new { @class = "text-danger" })
                         </td>
                     </tr>
@@ -87,7 +90,7 @@
                             <h3 class="text-uppercase">Institute</h3>
                         </td>
                         <td>
-                            <input type="text" name="Institution" value="@(Model !=null ? Model.Institution:"")" class="form-control text-center fw-bolder" readonly />
+                            <input type="text" name="Institution" value="@(Model !=null ? Model.Institution:" ")" class="form-control text-center fw-bolder" readonly />
                             @Html.ValidationMessage("Institution", new { @class = "text-danger" })
                         </td>
                     </tr>
