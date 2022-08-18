@@ -1,6 +1,6 @@
 <h1>Education Platform</h1>
 Education platform is a web app where an educational institution can register and offer new courses to students and students can purchase them for enhance his skills. There is to total four users (Admin, Institution, Mentor and Student) in the application. I have developed the Admin user part. 
-<b>Key Features of Admin: <b>
+<br><b>Key Features of Admin: <b>
 <ul>
 <li>Approve Institution after registration </li>
 <li>CRUD all user </li>
