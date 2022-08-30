@@ -1,5 +1,6 @@
 <h1>Education Platform</h1>
-Education platform is a web app where an educational institution can register and offer new courses to students and students can purchase them for enhance his skills. There is to total four users (Admin, Institution, Mentor and Student) in the application. I have developed the Admin user part. 
+Education platform is a web app using MVC format of ASP.NET where an educational institution can register and offer new courses to students and students can purchase them for enhance his skills. There is to total four users (Admin, Institution, Mentor and Student) in the application. I have developed the Admin user part. 
+<h3>Simulation Link: https://drive.google.com/file/d/1VFF2bCymszRAqM_lPz_SLmEtqHvyWKPJ/view?usp=sharing</h3>
 <br><b>Key Features of Admin: <b>
 <ul>
 <li>Approve Institution after registration </li>
